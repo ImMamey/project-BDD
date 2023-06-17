@@ -5,7 +5,9 @@ import logging
 
 LOG = logging.getLogger("server")
 
-
+def start()->None:
+    """Inicia el servidor"""
+    print("OWO")
 
 
 
