@@ -11,15 +11,25 @@ def start()->None:
 
 
 
-async def main()->None:
+def main()->None:
     loop = asyncio.get_event_loop()
-    server = await loop.create_server(start, host=host, port=port)
-    LOG.info("Serving on {}:{}".format(host, port))
+    coro = asyncio.start_server(start, host=host, port=port)
+    print("before run coro")
 
     try:
-        await server.serve_forever()
-    except KeyboardInterrupt as e:
+        server = loop.run_until_complete(coro)
+        LOG.info("Serving on {}:{}".format(host, port))
+        print("Serving on {}:{}".format(host, port))
+    except Exception as e:
+        exception: str = f"{type(e).__name__}: (e)"
+        LOG.exception(f"Fallo al correr la corutina: \n {exception} \n ")
+        print(f"Fallo al correr la corutina: \n {exception} \n ")
         LOG.info("Keyboard interrupted. Exit.")
+    loop.run_forever()
+    #cerrar el servidor
+    server.close()
+    loop.run_until_complete(server.wait_closed())
+    loop.close()
 
 if __name__ == "__main__":
 
@@ -37,6 +47,6 @@ if __name__ == "__main__":
         host: str = "127.0.0.1"
 
     port = 5555
-    asyncio.run(main())
+    main()
 
 
