@@ -84,6 +84,12 @@ def cliente():
     servidor_a.connect((host, puerto_a))
     servidor_b.connect((host, puerto_b))
     
+    nombre_usuario = input("Ingrese su nombre de usuario: ")
+    
+    # Enviar nombre de usuario al servidor
+    servidor_a.send(nombre_usuario.encode())
+    servidor_b.send(nombre_usuario.encode())
+    
     resultado = procesar_archivo_entrada(servidor_a, servidor_b)
     
     guardar_resultado(resultado)

@@ -1,51 +1,75 @@
 import socket
+import hashlib
+import sqlite3
 import random
 
-def generar_clave():
-    # Generar una clave numérica de 8 dígitos
-    clave = str(random.randint(10000000, 99999999))
+def generar_nueva_clave():
+    clave = ""
+    for _ in range(8):
+        digito = random.randint(0, 9)
+        clave += str(digito)
     return clave
 
-def guardar_clave(identidad, clave):
-    with open("base_datos.txt", "a") as archivo:
-        archivo.write(clave + "\n")
-        archivo.write(identidad + "\n")
+def generar_clave(conn, cliente_socket):
+    cursor = conn.cursor()
 
-def handle_cliente_servidor_a(cliente):
-    while True:
-        data = cliente.recv(1024).decode()
-        if not data:
-            break
-        
-        # Procesar solicitud del cliente
-        comando, *parametros = data.split()
-        
-        if comando == "SOLICITAR_CLAVE":
-            identidad = parametros[0]
-            clave = generar_clave()
-            guardar_clave(identidad, clave)
-            # Envía la clave generada al cliente
-            cliente.send(clave.encode())
-        
-        else:
-            cliente.send(b"Comando no reconocido\n")
+    # Recibir nombre de usuario del cliente
+    nombre_usuario = cliente_socket.recv(1024).decode()
+
+    # Verificar si el nombre de usuario ya existe en la base de datos
+    cursor.execute("SELECT clave FROM usuarios WHERE identidad = ?", (nombre_usuario,))
+    resultado = cursor.fetchone()
+
+    if resultado:
+        # El nombre de usuario ya existe, obtener la clave asociada
+        clave = resultado[0]
+        return clave
+    else:
+        # El nombre de usuario no existe, generar una nueva clave
+        nueva_clave = generar_nueva_clave()
+
+        # Insertar el nuevo nombre de usuario y clave en la base de datos
+        cursor.execute("INSERT INTO usuarios (clave, identidad) VALUES (?, ?)", (nueva_clave, nombre_usuario))
+        conn.commit()
+
+        return nueva_clave
+
+def autenticar_identidad(conn, identidad):
+    cursor = conn.cursor()
     
-    cliente.close()
+    # Verificar si la identidad existe en la base de datos
+    cursor.execute("SELECT id FROM usuarios WHERE identidad = ?", (identidad,))
+    resultado = cursor.fetchone()
+    
+    if resultado:
+        return "VALIDA"
+    else:
+        return "INVALIDA"
 
-def iniciar_servidor_a():
+def servidor_a():
     host = "localhost"
-    port = 5000
-    
+    puerto = 5000
+
+    conn = sqlite3.connect('usuarios.db')
+
     servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    servidor.bind((host, port))
+    servidor.bind((host, puerto))
     servidor.listen(1)
-    
-    print("Servidor A iniciado en {}:{}".format(host, port))
-    
+
+    print("Servidor A de Claves iniciado. Esperando conexiones...")
+
     while True:
         cliente, direccion = servidor.accept()
-        print("Cliente conectado desde:", direccion)
-        handle_cliente_servidor_a(cliente)
+        print("Cliente conectado:", direccion)
 
-iniciar_servidor_a()
+        # Generar o recuperar clave asociada al nombre de usuario del cliente
+        clave = generar_clave(conn, cliente)
 
+        # Enviar clave al cliente
+        cliente.send(clave.encode())
+
+        cliente.close()
+
+    conn.close()
+
+servidor_a()
