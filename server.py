@@ -5,33 +5,37 @@ import logging
 
 LOG = logging.getLogger("server")
 
-def start()->None:
+clients = dict()
+
+
+def client_connected_cb(client_reader, client_writer) -> None:
     """Inicia el servidor"""
-    print("OWO")
+    client_id = client_writer.get_extra_info("peername")
+    LOG.info("Client connected: {}".format(client_id))
 
 
+async def main() -> None:
+    server = await asyncio.start_server(client_connected_cb, host=host, port=port)
 
-def main()->None:
-    loop = asyncio.get_event_loop()
-    coro = asyncio.start_server(start, host=host, port=port)
-    print("before run coro")
+    addrs = ", ".join(str(sock.getsockname()) for sock in server.sockets)
+    LOG.info(f"Serving on:{addrs}")
 
     try:
-        server = loop.run_until_complete(coro)
-        LOG.info("Serving on {}:{}".format(host, port))
-        print("Serving on {}:{}".format(host, port))
+        async with server:
+            await server.serve_forever()
     except Exception as e:
         exception: str = f"{type(e).__name__}: (e)"
-        LOG.exception(f"Fallo al correr la corutina: \n {exception} \n ")
-        print(f"Fallo al correr la corutina: \n {exception} \n ")
-        LOG.info("Keyboard interrupted. Exit.")
-    loop.run_forever()
-    #cerrar el servidor
-    server.close()
-    loop.run_until_complete(server.wait_closed())
-    loop.close()
+        LOG.exception("Fallo al correr la corutina del servidor")
+
 
 if __name__ == "__main__":
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+        handlers=[logging.StreamHandler(), logging.FileHandler("stuff.log")],
+    )
 
     try:
         ips = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -41,12 +45,10 @@ if __name__ == "__main__":
     except Exception as e:
         exception: str = f"{type(e).__name__}: (e)"
         LOG.exception(
-            f"Fallo al cargar la IP public del servidor: \n {exception} \n "
-            + f"Se montará el servidor en localhost: 127.0.0.1"
+                "Fallo al cargar la IP publica del servidor\n"
+                "Se montará el servidor en localhost: 127.0.0.1"
         )
         host: str = "127.0.0.1"
 
     port = 5555
-    main()
-
-
+    asyncio.run(main())
