@@ -2,7 +2,7 @@ import socket
 import random
 
 def generar_clave():
-    # Aquí implementa la lógica para generar una clave numérica de 8 dígitos
+    # Generar una clave numérica de 8 dígitos
     clave = str(random.randint(10000000, 99999999))
     return clave
 
@@ -21,8 +21,8 @@ def handle_cliente_servidor_a(cliente):
         comando, *parametros = data.split()
         
         if comando == "SOLICITAR_CLAVE":
-            clave = generar_clave()
             identidad = parametros[0]
+            clave = generar_clave()
             guardar_clave(identidad, clave)
             # Envía la clave generada al cliente
             cliente.send(clave.encode())
