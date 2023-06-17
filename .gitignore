@@ -1,0 +1,12 @@
+.idea/
+__pycache__/
+**/__pycache__/
+test/
+
+#mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+
+.idea/workspace.xml
