@@ -75,8 +75,8 @@ def guardar_resultado(resultado):
 
 def cliente():
     host = "localhost"
-    puerto_a = 8888
-    puerto_b = 8889
+    puerto_a = 5000
+    puerto_b = 5001
     
     servidor_a = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     servidor_b = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
