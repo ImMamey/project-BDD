@@ -5,7 +5,7 @@ import asyncio
 
 
 async def init_socket (loop):
-    reader, writer = await asyncio.open_connection('127.0.0.1', 3000, loop=loop)
+    reader, writer = await asyncio.open_connection('192.168.1.101', 5555, loop=loop)
     return reader, writer
 
 
