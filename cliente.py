@@ -25,31 +25,37 @@ def cifrar_hash(hash_md5, clave):
     
     return hash_cifrado_base64
 
-def firmar_mensaje(servidor_a, identidad, mensaje):
-    # Enviar solicitud de clave al Servidor A
+def solicitar_clave(servidor_a, identidad):
     servidor_a.send(("SOLICITAR_CLAVE " + identidad).encode())
     clave = servidor_a.recv(1024).decode()
-    
-    # Calcular el hash MD5 del mensaje
-    hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
-    
-    # Cifrar el hash con la clave
-    hash_cifrado = cifrar_hash(hash_md5, clave)
-    
-    # Devolver el texto de la firma del mensaje
-    return hash_cifrado
+    return clave
+
+def registrar_usuario(servidor_a):
+    print("=== Registro de Usuario ===")
+    cedula = input("Ingrese su cédula: ")
+    nombre = input("Ingrese su nombre: ")
+
+    servidor_a.send(("REGISTRAR_USUARIO {} {}".format(cedula, nombre)).encode())
+    respuesta = servidor_a.recv(1024).decode().strip()
+
+    print(respuesta)
+
+def firmar_mensaje(servidor_a, identidad, mensaje):
+    servidor_a.send(("FIRMAR_MENSAJE {} {}".format(identidad, mensaje)).encode())
+    firma = servidor_a.recv(1024).decode().strip()
+
+    return firma
 
 def autenticar_identidad(servidor_b, clave):
-    # Enviar solicitud de autenticación al Servidor B
     servidor_b.send(("AUTENTICAR_IDENTIDAD " + clave).encode())
     respuesta = servidor_b.recv(1024).decode().strip()
-    
+
     return respuesta
 
 def verificar_integridad(firma, mensaje):
-    # Aquí implementa la lógica para descifrar la firma electrónica y comparar el bloque Hash con el del mensaje
-    # Devolver "Mensaje INTEGRO" o "Mensaje NO INTEGRO"
-    return 0
+    # Implementa la lógica para descifrar la firma electrónica y comparar el bloque Hash con el del mensaje
+    # Devuelve "Mensaje INTEGRO" o "Mensaje NO INTEGRO"
+    return "Mensaje INTEGRO"
 
 def procesar_archivo_entrada(servidor_a, servidor_b):
     with open("entrada.txt", "r") as archivo_entrada:
@@ -57,7 +63,7 @@ def procesar_archivo_entrada(servidor_a, servidor_b):
         identidad = archivo_entrada.readline().strip()
         mensaje = archivo_entrada.readline().strip()
         firma = archivo_entrada.readline().strip()
-    
+
     if tipo_operacion == "FIRMAR":
         return firmar_mensaje(servidor_a, identidad, mensaje)
     
@@ -84,15 +90,31 @@ def cliente():
     servidor_a.connect((host, puerto_a))
     servidor_b.connect((host, puerto_b))
     
-    nombre_usuario = input("Ingrese su nombre de usuario: ")
+    print("=== Menú Principal ===")
+    print("1. Registrarse")
+    print("2. Firmar Mensaje")
+    print("3. Autenticar Identidad")
+    print("4. Verificar Integridad")
+    opcion = input("Seleccione una opción: ")
     
-    # Enviar nombre de usuario al servidor
-    servidor_a.send(nombre_usuario.encode())
-    servidor_b.send(nombre_usuario.encode())
-    
-    resultado = procesar_archivo_entrada(servidor_a, servidor_b)
-    
-    guardar_resultado(resultado)
+    if opcion == "1":
+        registrar_usuario(servidor_a)
+    elif opcion == "2":
+        identidad = input("Ingrese su identidad: ")
+        mensaje = input("Ingrese el mensaje a firmar: ")
+        resultado = firmar_mensaje(servidor_a, identidad, mensaje)
+        guardar_resultado(resultado)
+    elif opcion == "3":
+        identidad = input("Ingrese su identidad: ")
+        respuesta = autenticar_identidad(servidor_b, identidad)
+        guardar_resultado(respuesta)
+    elif opcion == "4":
+        mensaje = input("Ingrese el mensaje: ")
+        firma = input("Ingrese la firma del mensaje: ")
+        resultado = verificar_integridad(firma, mensaje)
+        guardar_resultado(resultado)
+    else:
+        print("Opción no válida.")
     
     servidor_a.close()
     servidor_b.close()

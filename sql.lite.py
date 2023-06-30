@@ -13,15 +13,9 @@ cursor = conn.cursor()
 
 # Crear la tabla de usuarios
 cursor.execute('''CREATE TABLE IF NOT EXISTS usuarios
-                  (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  (cedula INTEGER PRIMARY KEY,
                    clave TEXT,
-                   identidad TEXT)''')
-
-# Ejemplo de inserción de datos con clave en formato MD5
-clave = '12345678'
-clave_md5 = convertir_md5(clave)
-identidad = 'usuario1'
-cursor.execute("INSERT INTO usuarios (clave, identidad) VALUES (?, ?)", (clave_md5, identidad))
+                   nombre TEXT)''')
 
 # Guardar los cambios y cerrar la conexión
 conn.commit()
