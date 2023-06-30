@@ -40,7 +40,7 @@ class Client:
         except Exception as e:
             LOG.exception(
                 "Error al tratarse de conectar al Proxy. " +
-                "Por favor cerrar el cliente y verificar la coneccion."
+                "Por favor, cerrar el cliente y verificar la coneccion."
             )
 
 
@@ -119,7 +119,7 @@ def opcion_verificar_integridad()->None:
     print(msg)
 
 if __name__ == "__main__":
-
+    #Crear logs para excepciones e informacion de estados.
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
