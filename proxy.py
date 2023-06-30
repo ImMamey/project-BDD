@@ -45,7 +45,61 @@ class Server:
 
             self.server: socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.bind(self.ADDR)
+    def string_sampler(sel,data:str, addr):
+        """
+        Esta funcion, permite verificar los datos enviados por cada cliente, y responde y filtra cada solicitud.
+        :param data: Inofrmacion de cada cliente
+        :return: la respuesta para el cliente.
+        """
+        import re
+        re_gex_commando= re.compile(r'(?<=\[)(.*?)(?=\])') # regex para obtener el commando u opcion a enviar.
+        re_gex_despuesDelHeader = re.compile(r'(?<=\])(.*?)(?=\|)')  # codigo para obtener el campo despues del header: [...]
+        re_gex_despuesDelSeparador = re.compile(r'(?<=\|!\|\s)(.*)')  # codigo para obtener el campo despues del separador: |!|
 
+        comando = str(re_gex_commando.search(data).group())
+        print(comando)
+
+        if comando=="REGISTRAR":
+            """Ejemplo: [REGISTRAR] 24464628 |!| Victor"""
+            cedula:str = str(re_gex_despuesDelHeader.search(data).group())
+            nombre:str = str(re_gex_despuesDelSeparador.search(data).group())
+
+            #TODO: implementar el codigo de hernani.
+            #servidor_a.send(("REGISTRAR_USUARIO {} {}".format(cedula, nombre)).encode())
+            #respuesta = servidor_a.recv(1024).decode().strip()
+            LOG.info("Iniciado proceso para la opcion: %s con datos:\n cedula: %s\n Nombre: %s" % (comando,cedula,nombre))
+        elif comando =="FIRMAR":
+            """Ejemplo: [FIRMAR] 24464628 |!| Habia una vez un perro feo"""
+            identidad:str = str(re_gex_despuesDelHeader.search(data).group())
+            mensaje: str = str(re_gex_despuesDelSeparador.search(data).group())
+
+            #TODO: implementar el código de hernani.
+            #resultado = firmar_mensaje(servidor_a, identidad, mensaje)
+            #guardar_resultado(resultado)
+            LOG.info("Iniciado proceso para la opcion: %s con datos: \nIdentidad: %s \n Mensaje: %s" % (comando, identidad, mensaje))
+
+        elif comando == "AUTENTICAR":
+            """Ejemplo: [AUTENTICAR] 24464628"""
+            identidad: str = str(re_gex_despuesDelHeader.search(data).group())
+
+            #TODO: implementar el código de hernani.
+            #respuesta = autenticar_identidad(servidor_b, identidad)
+            #guardar_resultado(respuesta)
+            LOG.info("Iniciado proceso para la opcion: %s con el dato:\nIdentidad: %s" % (comando, identidad))
+
+        elif comando == "VERIFICAR":
+            """Ejemplo: [VERIFICAR] OWOWOWOWOWOWOOWOW |!| miguel"""
+            mensaje: str= str(re_gex_despuesDelHeader.search(data).group())
+            firma: str = str(re_gex_despuesDelSeparador.search(data).group())
+
+            #TODO: implementar el código de hernani.
+            #resultado = verificar_integridad(firma, mensaje)
+            #guardar_resultado(resultado)
+            LOG.info("Iniciado proceso para la opcion: %s con datos: \n Mensaje: %s \nFirma: %s" % (comando, mensaje, firma))
+
+
+        print(str(data))
+        #return respuesta
     def handle_client(self, conn, addr, n):
         """
         Metodo que maneja clientes, recibe mensajes y envia mensajes de confirmacion
@@ -62,6 +116,7 @@ class Server:
             if msg_length:
                 msg_length = int(msg_length)
                 msg = conn.recv(msg_length).decode(n.FORMAT)
+                self.string_sampler(msg, addr)
                 if msg == n.DISCONNECT_MESSAGE:
                     connected = False
                 print(f"[{addr}] {msg}")
