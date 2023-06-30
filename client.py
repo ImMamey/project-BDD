@@ -65,29 +65,57 @@ class Client:
 
 def opcion_registrar_usuario(servidor_a)->None:
     print("=== Registro de Usuario ===")
-    cedula = input("Ingrese su cédula: ")
-    nombre = input("Ingrese su nombre: ")
+    cedula = input("\nIngrese su cédula:\n ")
+    nombre = input("Ingrese su nombre:\n ")
 
-    servidor_a.send(("REGISTRAR_USUARIO {} {}".format(cedula, nombre)).encode())
-    respuesta = servidor_a.recv(1024).decode().strip()
+    #servidor_a.send(("REGISTRAR_USUARIO {} {}".format(cedula, nombre)).encode())
+    #respuesta = servidor_a.recv(1024).decode().strip()
 
-    print(respuesta)
+    #print(respuesta)
+
+    #logging/debuggin
+    LOG.info(f"Cliente {cl.ADDR} solicitado Registrar un cliente.")
+    msg = "[REGISTRAR] " + str(cedula) + " |!| " + str(nombre)
+    print(msg)
+
+    cl.send(str(msg))
+
 def opcion_firmar_mensaje()->None:
-    identidad = input("Ingrese su identidad: ")
-    mensaje = input("Ingrese el mensaje a firmar: ")
-    resultado = opcion_firmar_mensaje(servidor_a, identidad, mensaje)
-    guardar_resultado(resultado)
+    print("=== Firmar Mensaje ===")
+    identidad = input("\n Ingrese su identidad: \n")
+    mensaje = input("Ingrese el mensaje a firmar: \n ")
+    #resultado = opcion_firmar_mensaje(servidor_a, identidad, mensaje)
+    #guardar_resultado(resultado)
+
+    #Logging/debbuggin
+    LOG.info(f"Cliente {cl.ADDR} solicitado firmar un mensaje.")
+    msg = "[FIRMAR] " + str(identidad) + " |!| " + str(mensaje)
+    print(msg)
+
+    cl.send(str(msg))
 
 def opcion_autenticar_identidad()->None:
-    identidad = input("Ingrese su identidad: ")
-    respuesta = autenticar_identidad(servidor_b, identidad)
-    guardar_resultado(respuesta)
+    print("=== Autenticar Identidad ===")
+    identidad = input("\nIngrese su identidad:\n ")
+    #respuesta = autenticar_identidad(servidor_b, identidad)
+    #guardar_resultado(respuesta)
+
+    # Logging/debbuggin
+    LOG.info(f"Cliente {cl.ADDR} solicitado autenticar Identidad.")
+    msg = "[AUTENTICAR] " + str(identidad)
+    print(msg)
 
 def opcion_verificar_integridad()->None:
-    mensaje = input("Ingrese el mensaje: ")
-    firma = input("Ingrese la firma del mensaje: ")
-    resultado = verificar_integridad(firma, mensaje)
-    guardar_resultado(resultado)
+    print("=== Verificar Integridad ===")
+    mensaje = input("\nIngrese el mensaje: \n")
+    firma = input("Ingrese la firma del mensaje: \n")
+    #resultado = verificar_integridad(firma, mensaje)
+    #guardar_resultado(resultado)
+
+    # Logging/debbuggin
+    LOG.info(f"Cliente {cl.ADDR} solicitado verificar integridad.")
+    msg = "[VERIFICAR] " + str(mensaje) + " |!| " + str(firma)
+    print(msg)
 
 if __name__ == "__main__":
 
@@ -118,7 +146,7 @@ if __name__ == "__main__":
     while not detente:
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
-            opcion_registrar_usuario(servidor_a)
+            opcion_registrar_usuario()
         elif opcion == "2":
             opcion_firmar_mensaje()
         elif opcion == "3":
