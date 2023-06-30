@@ -1,0 +1,2 @@
+cedula,clave,nombre
+27391845,52255272,Hernani

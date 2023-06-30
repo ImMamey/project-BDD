@@ -1,6 +1,6 @@
 import sqlite3
 import hashlib
-
+import csv
 # Función para convertir una cadena en MD5
 def convertir_md5(cadena):
     md5_hash = hashlib.md5()
@@ -17,6 +17,22 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS usuarios
                    clave TEXT,
                    nombre TEXT)''')
 
-# Guardar los cambios y cerrar la conexión
+cursor.execute('''SELECT * from usuarios''')
+rows = cursor.fetchall()
+
+# Mostrar los resultados
+for row in rows:
+    print(row)
+
+# Ruta del archivo de salida CSV
+ruta_archivo_csv = './Datos.txt'  # Actualiza con la ruta deseada
+
+# Exportar los datos a un archivo CSV
+with open(ruta_archivo_csv, 'w', newline='') as archivo_csv:
+    csv_writer = csv.writer(archivo_csv)
+    csv_writer.writerow([i[0] for i in cursor.description])  # Escribir encabezados de columna
+    csv_writer.writerows(rows)  # Escribir filas de datos
+
+
 conn.commit()
 conn.close()
