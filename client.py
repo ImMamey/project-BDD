@@ -159,12 +159,3 @@ if __name__ == "__main__":
             cl.send(cl.DISCONNECT_MESSAGE)
         else:
             print("Opción no válida.")
-
-    #TODO: funcion depreciada, borrar una vez que pierda utilidad.
-    while not detente:
-        msg: str = input("Escriba un mensaje para enviar al Servidor (escriba \"n\" para detener)\n")
-        if msg=="n":
-            detente=True
-            cl.send(cl.DISCONNECT_MESSAGE)
-        else:
-            cl.send(str(msg))
