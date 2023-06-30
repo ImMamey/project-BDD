@@ -54,7 +54,7 @@ class Server:
         :param n: Instancia de clase anidada "network"
         :return: None
         """
-        print(f"[NUEVA CONNECCION] {addr} connectado.")
+        LOG.info(f"[NUEVA CONNECCION] {addr} connectado.")
 
         connected: bool = True
         while connected:
@@ -86,8 +86,7 @@ class Server:
                 LOG.info(f"[CONNECIONES ACTIVAS] {threading.active_count() - 1}")
 
         except Exception as e:
-            exception: str = f"{type(e).__name__}: (e)"
-            print(f"Error al Iniciar el servidor. El error fue: \n{exception}")
+            LOG.exception("Error al inicar el servidor.")
 
 
 if __name__ == "__main__":
