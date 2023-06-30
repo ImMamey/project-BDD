@@ -57,7 +57,6 @@ class Server:
         re_gex_despuesDelSeparador = re.compile(r'(?<=\|!\|\s)(.*)')  # codigo para obtener el campo despues del separador: |!|
 
         comando = str(re_gex_commando.search(data).group())
-        print(comando)
 
         if comando=="REGISTRAR":
             """Ejemplo: [REGISTRAR] 24464628 |!| Victor"""
@@ -97,8 +96,6 @@ class Server:
             #guardar_resultado(resultado)
             LOG.info("Iniciado proceso para la opcion: %s con datos: \n Mensaje: %s \nFirma: %s" % (comando, mensaje, firma))
 
-
-        print(str(data))
         #return respuesta
     def handle_client(self, conn, addr, n):
         """
