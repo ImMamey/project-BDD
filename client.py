@@ -60,14 +60,35 @@ class Client:
 
 
 
+def opcion_registrar_usuario(servidor_a)->None:
+    print("=== Registro de Usuario ===")
+    cedula = input("Ingrese su cédula: ")
+    nombre = input("Ingrese su nombre: ")
 
+    servidor_a.send(("REGISTRAR_USUARIO {} {}".format(cedula, nombre)).encode())
+    respuesta = servidor_a.recv(1024).decode().strip()
 
+    print(respuesta)
+def opcion_firmar_mensaje()->None:
+    identidad = input("Ingrese su identidad: ")
+    mensaje = input("Ingrese el mensaje a firmar: ")
+    resultado = opcion_firmar_mensaje(servidor_a, identidad, mensaje)
+    guardar_resultado(resultado)
 
+def opcion_autenticar_identidad()->None:
+    identidad = input("Ingrese su identidad: ")
+    respuesta = autenticar_identidad(servidor_b, identidad)
+    guardar_resultado(respuesta)
 
+def opcion_verificar_integridad()->None:
+    mensaje = input("Ingrese el mensaje: ")
+    firma = input("Ingrese la firma del mensaje: ")
+    resultado = verificar_integridad(firma, mensaje)
+    guardar_resultado(resultado)
 
 if __name__ == "__main__":
     detente: bool = False
-
+    """ Esto no es necesario anymore, ya que será local host.
     while not detente:
         ip: str= input("Escriba el ip del servidor:\n")
         pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
@@ -75,9 +96,12 @@ if __name__ == "__main__":
             print("La ip no es válida. Intente nuevamente: \n")
         else:
             detente = True
+    """
 
+    ip = "localhost"
     cl = Client(ip)
     detente: bool = False
+
 
     """Menu principal"""
     menu_opciones = {
@@ -94,21 +118,13 @@ if __name__ == "__main__":
     opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
-        registrar_usuario(servidor_a)
+        opcion_registrar_usuario(servidor_a)
     elif opcion == "2":
-        identidad = input("Ingrese su identidad: ")
-        mensaje = input("Ingrese el mensaje a firmar: ")
-        resultado = firmar_mensaje(servidor_a, identidad, mensaje)
-        guardar_resultado(resultado)
+        opcion_firmar_mensaje()
     elif opcion == "3":
-        identidad = input("Ingrese su identidad: ")
-        respuesta = autenticar_identidad(servidor_b, identidad)
-        guardar_resultado(respuesta)
+        opcion_autenticar_identidad()
     elif opcion == "4":
-        mensaje = input("Ingrese el mensaje: ")
-        firma = input("Ingrese la firma del mensaje: ")
-        resultado = verificar_integridad(firma, mensaje)
-        guardar_resultado(resultado)
+        opcion_verificar_integridad()
     else:
         print("Opción no válida.")
 
