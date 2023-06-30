@@ -64,7 +64,7 @@ class Client:
 
 
 
-def opcion_registrar_usuario(servidor_a)->None:
+def opcion_registrar_usuario()->None:
     print("=== Registro de Usuario ===")
     cedula = input("\nIngrese su cédula:\n ")
     nombre = input("Ingrese su nombre:\n ")
@@ -106,6 +106,8 @@ def opcion_autenticar_identidad()->None:
     msg = "[AUTENTICAR] " + str(identidad)
     print(msg)
 
+    cl.send(str(msg))
+
 def opcion_verificar_integridad()->None:
     print("=== Verificar Integridad ===")
     mensaje = input("\nIngrese el mensaje: \n")
@@ -117,6 +119,8 @@ def opcion_verificar_integridad()->None:
     LOG.info(f"Cliente {cl.ADDR} solicitado verificar integridad.")
     msg = "[VERIFICAR] " + str(mensaje) + " |!| " + str(firma)
     print(msg)
+
+    cl.send(str(msg))
 
 if __name__ == "__main__":
     #Crear logs para excepciones e informacion de estados.
@@ -141,10 +145,10 @@ if __name__ == "__main__":
         5: "5. Salir"
     }
 
-    print("=== Menú Principal ===")
-    for key in menu_opciones.keys():
-        print(key, '--', menu_opciones[key])
     while not detente:
+        print("=== Menú Principal ===")
+        for key in menu_opciones.keys():
+            print(key, '--', menu_opciones[key])
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
             opcion_registrar_usuario()
@@ -158,4 +162,4 @@ if __name__ == "__main__":
             detente=True
             cl.send(cl.DISCONNECT_MESSAGE)
         else:
-            print("Opción no válida.")
+            print("\n Opción no válida. \n")

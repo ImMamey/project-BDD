@@ -1,67 +1,102 @@
-import asyncio
+import socket
+import threading
 import logging
-# XXX: REMOVE THIS LINE IN PRODUCTION!
-logging.basicConfig(format='%(asctime)s %(lineno)d %(levelname)s:%(message)s', level=logging.DEBUG)
-logger = logging.getLogger(__name__)
+# TODO: eliminar LAN, hacerlo local.
 
-# Connected client records
+LOG = logging.getLogger("Proxy Server")
+
 clients = dict()
 
+class Server:
+    """
+    Contiene todos los metodos necesarios para inciar un servidor usando Hilos.
+    """
+    class Network:
+        """
+        Contiene los atributos del servidor para facil acceso en una subclase anidada. Tambien crea el socket principal
+        """
+        def __init__(self)-> None:
+            """
+            :var SERVER: Guarda la IP del servidor
+            :var PORT: Numero de puerto a usar
+            :var ADDR: Tupla con los datos de: ip y numero de puerto
+            :var FORMAT: Formato de encode
+            :var DISCONNECT_MESSAGE: mensaje para la desconección y cierre de sesion.
+            :var HEADER: Numero de bytes usado para algoritmo logico = como no sabemos cual es el tamaño de cada mensaje, todos los mensajes seran de 64 bytes. Facilita el encode/decode.
+            :var server: socket del servidor.
+            """
+            # obtener lan ip
+            ips = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            ips.connect(("8.8.8.8", 80))
 
-async def show_tasks():
-    """FOR DEBUGGING"""
-    while True:
-        await asyncio.sleep(5)
-        logger.debug(asyncio.Task.all_tasks())
+            """Usar este codigo para IP's LAN"""
+            #self.SERVER: str = ips.getsockname()[0]
+            self.SERVER: str = "localhost"
+            #cerrar  lan ips
+            ips.close()
 
+            self.PORT: int = 5555 #purto a usar
+            self.ADDR: tuple = (self.SERVER, self.PORT)
+            self.FORMAT: str = 'utf-8'
+            self.DISCONNECT_MESSAGE: str= "!DISCONNECT"
+            self.HEADER: int =64
 
-def client_connected_cb(client_reader, client_writer):
-    # Use peername as client ID
-    client_id = client_writer.get_extra_info('peername')
+            self.server: socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.server.bind(self.ADDR)
 
-    logger.info('Client connected: {}'.format(client_id))
+    def handle_client(self, conn, addr,n):
+        """
+        Metodo que maneja clientes, recibe mensajes y envia mensajes de confirmacion
+        :param conn: connecion del socket.
+        :param addr: tupla (ip,socket)
+        :param n: Instancia de clase anidada "network"
+        :return: None
+        """
+        print(f"[NUEVA CONNECCION] {addr} connectado.")
 
-    # Define the clean up function here
-    def client_cleanup(fu):
-        logger.info('Cleaning up client {}'.format(client_id))
-        try:  # Retrievre the result and ignore whatever returned, since it's just cleaning
-            fu.result()
+        connected: bool = True
+        while connected:
+            msg_length= conn.recv(n.HEADER).decode(n.FORMAT)
+            if msg_length:
+                msg_length = int(msg_length)
+                msg = conn.recv(msg_length).decode(n.FORMAT)
+                if msg == n.DISCONNECT_MESSAGE:
+                    connected = False
+                print(f"[{addr}] {msg}")
+                conn.send("[SERVIDOR] Mensaje recibido.".encode(n.FORMAT))
+
+    def start(self):
+        """
+        Incia el servidor mediante un try and catch.
+        :return:  None
+        """
+        try:
+            n = self.Network()
+            n.server.listen()
+            LOG.info("El servidor esta activo en la IP: %s",n.SERVER)
+            LOG.info("[Escuchando] Servidor esta escuchando...")
+            while True:
+                conn, addr = n.server.accept()
+                thread = threading.Thread(target=self.handle_client, args=(conn, addr, n))
+                thread.start()
+                LOG.info(f"[CONNECIONES ACTIVAS] {threading.active_count() - 1}")
+
         except Exception as e:
-            pass
-        # Remove the client from client records
-        del clients[client_id]
-
-    task = asyncio.ensure_future(client_task(client_reader, client_writer))
-    task.add_done_callback(client_cleanup)
-    # Add the client and the task to client records
-    clients[client_id] = task
+            exception: str = f"{type(e).__name__}: (e)"
+            print(f"Error al Iniciar el servidor. El error fue: \n{exception}")
 
 
-async def client_task(reader, writer):
-    client_addr = writer.get_extra_info('peername')
-    logger.info('Start echoing back to {}'.format(client_addr))
-
-    while True:
-        data = await reader.read(1024)
-        if data == b'':
-            logger.info('Received EOF. Client disconnected.')
-            return
-        else:
-            writer.write(data)
-            await writer.drain()
-
-async def main():
-    loop = asyncio.get_event_loop()
-    server = await loop.create_server(client_connected_cb, host=host, port=port)
-    logger.info("Serving on {}:{}".format(host, port))
-
-    try:
-        await server.serve_forever()
-    except KeyboardInterrupt as e:
-        logger.info("Keyboard interrupted. Exit.")
 
 if __name__ == "__main__":
-    host = "localhost"
-    port = 9009
 
-    asyncio.run(main())
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+        handlers=[logging.StreamHandler(), logging.FileHandler("proxy.log")],
+    )
+
+
+    LOG.info("[INICIANDO SERVIDOR] el servidor está iniciando....")
+    s = Server()
+    s.start()
