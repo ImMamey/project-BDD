@@ -1,21 +1,23 @@
 import socket
 import threading
 import logging
-# TODO: eliminar LAN, hacerlo local.
 
 LOG = logging.getLogger("Proxy Server")
 
 clients = dict()
 
+
 class Server:
     """
     Contiene todos los metodos necesarios para inciar un servidor usando Hilos.
     """
+
     class Network:
         """
         Contiene los atributos del servidor para facil acceso en una subclase anidada. Tambien crea el socket principal
         """
-        def __init__(self)-> None:
+
+        def __init__(self) -> None:
             """
             :var SERVER: Guarda la IP del servidor
             :var PORT: Numero de puerto a usar
@@ -30,21 +32,21 @@ class Server:
             ips.connect(("8.8.8.8", 80))
 
             """Usar este codigo para IP's LAN"""
-            #self.SERVER: str = ips.getsockname()[0]
+            # self.SERVER: str = ips.getsockname()[0]
             self.SERVER: str = "localhost"
-            #cerrar  lan ips
+            # cerrar  lan ips
             ips.close()
 
-            self.PORT: int = 5555 #purto a usar
+            self.PORT: int = 5555  # purto a usar
             self.ADDR: tuple = (self.SERVER, self.PORT)
-            self.FORMAT: str = 'utf-8'
-            self.DISCONNECT_MESSAGE: str= "!DISCONNECT"
-            self.HEADER: int =64
+            self.FORMAT: str = "utf-8"
+            self.DISCONNECT_MESSAGE: str = "!DISCONNECT"
+            self.HEADER: int = 64
 
             self.server: socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.bind(self.ADDR)
 
-    def handle_client(self, conn, addr,n):
+    def handle_client(self, conn, addr, n):
         """
         Metodo que maneja clientes, recibe mensajes y envia mensajes de confirmacion
         :param conn: connecion del socket.
@@ -56,7 +58,7 @@ class Server:
 
         connected: bool = True
         while connected:
-            msg_length= conn.recv(n.HEADER).decode(n.FORMAT)
+            msg_length = conn.recv(n.HEADER).decode(n.FORMAT)
             if msg_length:
                 msg_length = int(msg_length)
                 msg = conn.recv(msg_length).decode(n.FORMAT)
@@ -73,11 +75,13 @@ class Server:
         try:
             n = self.Network()
             n.server.listen()
-            LOG.info("El servidor esta activo en la IP: %s",n.SERVER)
+            LOG.info("El servidor esta activo en la IP: %s", n.SERVER)
             LOG.info("[Escuchando] Servidor esta escuchando...")
             while True:
                 conn, addr = n.server.accept()
-                thread = threading.Thread(target=self.handle_client, args=(conn, addr, n))
+                thread = threading.Thread(
+                    target=self.handle_client, args=(conn, addr, n)
+                )
                 thread.start()
                 LOG.info(f"[CONNECIONES ACTIVAS] {threading.active_count() - 1}")
 
@@ -86,16 +90,13 @@ class Server:
             print(f"Error al Iniciar el servidor. El error fue: \n{exception}")
 
 
-
 if __name__ == "__main__":
-
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
         handlers=[logging.StreamHandler(), logging.FileHandler("proxy.log")],
     )
-
 
     LOG.info("[INICIANDO SERVIDOR] el servidor está iniciando....")
     s = Server()
