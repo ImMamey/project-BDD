@@ -1,6 +1,7 @@
 import socket
 import threading
 import logging
+# TODO: eliminar LAN, hacerlo local.
 
 LOG = logging.getLogger("server")
 

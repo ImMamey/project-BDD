@@ -59,6 +59,12 @@ class Client:
             print(f"Error al enviar el mensaje: \n{exception}")
 
 
+
+
+
+
+
+
 if __name__ == "__main__":
     detente: bool = False
 
@@ -72,6 +78,39 @@ if __name__ == "__main__":
 
     cl = Client(ip)
     detente: bool = False
+
+    """Menu principal"""
+    menu_opciones = {
+        1: "1. Registrarse.",
+        2: "2. Firmar mensaje.",
+        3: "3. Autenticar Identidad.",
+        4: "4. Verificar Integridad.",
+        5: "5. Salir"
+    }
+
+    print("=== Menú Principal ===")
+    for key in menu_opciones.keys():
+        print(key, '--', menu_opciones[key])
+    opcion = input("Seleccione una opción: ")
+
+    if opcion == "1":
+        registrar_usuario(servidor_a)
+    elif opcion == "2":
+        identidad = input("Ingrese su identidad: ")
+        mensaje = input("Ingrese el mensaje a firmar: ")
+        resultado = firmar_mensaje(servidor_a, identidad, mensaje)
+        guardar_resultado(resultado)
+    elif opcion == "3":
+        identidad = input("Ingrese su identidad: ")
+        respuesta = autenticar_identidad(servidor_b, identidad)
+        guardar_resultado(respuesta)
+    elif opcion == "4":
+        mensaje = input("Ingrese el mensaje: ")
+        firma = input("Ingrese la firma del mensaje: ")
+        resultado = verificar_integridad(firma, mensaje)
+        guardar_resultado(resultado)
+    else:
+        print("Opción no válida.")
 
     while not detente:
         msg: str = input("Escriba un mensaje para enviar al Servidor (escriba \"n\" para detener)\n")
