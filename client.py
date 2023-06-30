@@ -1,7 +1,9 @@
 import socket
 import re
 import sys
+import logging
 
+LOG = logging.getLogger("Cliente")
 class Client:
     """
     Contiene todos los metodos para el cliente.
@@ -21,8 +23,9 @@ class Client:
         self.PORT: int = 5555
         self.FORMAT: str = 'utf-8'
         self.DISCONNECT_MESSAGE: str = "!DISCONNECT"
-        self.SERVER: str = ip #"192.168.56.1"
+        self.SERVER: str = ip
         self.ADDR: tuple = (self.SERVER, self.PORT)
+        LOG.info(f"[NUEVO CLIENTE] {self.ADDR} conectado.")
 
         self.start()
 
@@ -87,21 +90,18 @@ def opcion_verificar_integridad()->None:
     guardar_resultado(resultado)
 
 if __name__ == "__main__":
-    detente: bool = False
-    """ Esto no es necesario anymore, ya que será local host.
-    while not detente:
-        ip: str= input("Escriba el ip del servidor:\n")
-        pattern = re.compile("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$")
-        if not pattern.match(ip):
-            print("La ip no es válida. Intente nuevamente: \n")
-        else:
-            detente = True
-    """
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+        handlers=[logging.StreamHandler(), logging.FileHandler("client.log")],
+    )
 
     ip = "localhost"
+    LOG.info("[INICIANDO Cliente] el servidor está iniciando....")
     cl = Client(ip)
     detente: bool = False
-
 
     """Menu principal"""
     menu_opciones = {
@@ -115,19 +115,22 @@ if __name__ == "__main__":
     print("=== Menú Principal ===")
     for key in menu_opciones.keys():
         print(key, '--', menu_opciones[key])
-    opcion = input("Seleccione una opción: ")
+    while not detente:
+        opcion = input("Seleccione una opción: ")
+        if opcion == "1":
+            opcion_registrar_usuario(servidor_a)
+        elif opcion == "2":
+            opcion_firmar_mensaje()
+        elif opcion == "3":
+            opcion_autenticar_identidad()
+        elif opcion == "4":
+            opcion_verificar_integridad()
+        elif opcion == "5":
+            detente=True
+        else:
+            print("Opción no válida.")
 
-    if opcion == "1":
-        opcion_registrar_usuario(servidor_a)
-    elif opcion == "2":
-        opcion_firmar_mensaje()
-    elif opcion == "3":
-        opcion_autenticar_identidad()
-    elif opcion == "4":
-        opcion_verificar_integridad()
-    else:
-        print("Opción no válida.")
-
+    #TODO: funcion depreciada, borrar una vez que pierda utilidad.
     while not detente:
         msg: str = input("Escriba un mensaje para enviar al Servidor (escriba \"n\" para detener)\n")
         if msg=="n":

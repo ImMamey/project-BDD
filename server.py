@@ -29,8 +29,9 @@ class Server:
             ips = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             ips.connect(("8.8.8.8", 80))
 
-
-            self.SERVER: str = ips.getsockname()[0]
+            """Usar este codigo para IP's LAN"""
+            #self.SERVER: str = ips.getsockname()[0]
+            self.SERVER: str = "localhost"
             #cerrar  lan ips
             ips.close()
 
@@ -95,7 +96,7 @@ if __name__ == "__main__":
         handlers=[logging.StreamHandler(), logging.FileHandler("stuff.log")],
     )
 
-    if __name__ == "__main__":
-        LOG.info("[INICIANDO SERVIDOR] el servidor está iniciando....")
-        s = Server()
-        s.start()
+
+    LOG.info("[INICIANDO SERVIDOR] el servidor está iniciando....")
+    s = Server()
+    s.start()
