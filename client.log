@@ -19,3 +19,10 @@
 2023-06-30 16:49:27 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
 2023-06-30 16:49:27 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
 2023-06-30 16:49:34 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-06-30 17:07:02 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 17:07:02 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 17:07:04 - ERROR - Cliente - Error al tratarse de conectar al ProxyPor favor cerrar el cliente y verificar la coneccion.
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 39, in start
+    self.client.connect(self.ADDR)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it

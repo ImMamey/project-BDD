@@ -38,9 +38,11 @@ class Client:
             self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.client.connect(self.ADDR)
         except Exception as e:
-            exception: str = f"{type(e).__name__}: (e)"
-            print(f"Error al tratar de conectarse al servidor: \n{exception}")
-            sys.exit("El cliente se cerrará despues de el log....")
+            LOG.exception(
+                "Error al tratarse de conectar al Proxy. " +
+                "Por favor cerrar el cliente y verificar la coneccion."
+            )
+
 
 
     def send(self, msg) -> None:
@@ -58,8 +60,7 @@ class Client:
             self.client.send(message)
             print(self.client.recv(2048).decode(self.FORMAT))
         except Exception as e:
-            exception: str = f"{type(e).__name__}: (e)"
-            print(f"Error al enviar el mensaje: \n{exception}")
+            LOG.exception("Error al enviar el mensaje.")
 
 
 
@@ -155,6 +156,7 @@ if __name__ == "__main__":
             opcion_verificar_integridad()
         elif opcion == "5":
             detente=True
+            cl.send(cl.DISCONNECT_MESSAGE)
         else:
             print("Opción no válida.")
 
