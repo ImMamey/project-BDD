@@ -131,7 +131,7 @@ if __name__ == "__main__":
     )
 
     ip = "localhost"
-    LOG.info("[INICIANDO Cliente] el servidor está iniciando....")
+    LOG.info("[INICIANDO Cliente] el cliente está iniciando....")
     cl = Client(ip)
     detente: bool = False
 
