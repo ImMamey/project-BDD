@@ -23,27 +23,54 @@ def registrar_usuario(servidor_a):
 
 def procesar_archivo_entrada(servidor_a, identidad2):
     with open("entrada.txt", "r") as archivo_entrada:
-        tipo_operacion = archivo_entrada.readline().strip()
         identidad = archivo_entrada.readline().strip()
         mensaje = archivo_entrada.readline().strip()
         firma = archivo_entrada.readline().strip()
+        try:
+            clave = solicitar_clave(servidor_a, identidad2)
+            if clave:
+                hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
+                firma = cifrar_hash(hash_md5, clave)
+                resultado = f"{clave}\n{firma}\n{mensaje}\n0"
+                guardar_resultado(resultado)
+                print("Firma generada y guardada en salida.txt")
+            else:
+                print("No se pudo obtener la clave del servidor A")
+        except:
+            print("error al cifrar")
 
-    if tipo_operacion == "FIRMAR":
-        clave = solicitar_clave(servidor_a, identidad2)
-        if clave:
-            hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
-            firma = cifrar_hash(hash_md5, clave)
-            resultado = f"{clave}\n{firma}\n0"
-            guardar_resultado(resultado)
-            print("Firma generada y guardada en salida.txt")
-        else:
-            print("No se pudo obtener la clave del servidor A")
-    elif tipo_operacion == "AUTENTICAR":
-        respuesta = 0
-        return respuesta
-    elif tipo_operacion == "INTEGRIDAD":
-        resultado = 0
-        return resultado
+
+def descifrar_mensaje():
+    with open("salida.txt", "r") as archivo_salida:
+        clave = archivo_salida.readline().strip()
+        firma = archivo_salida.readline().strip()
+        mensaje = archivo_salida.readline().strip()
+        final = archivo_salida.readline().strip()
+        try:
+            clave = clave.ljust(32)[:32]
+            cifrador = AES.new(clave.encode(), AES.MODE_ECB)
+            mensaje_bytes = base64.b64decode(firma)
+            MD5_descifrado = cifrador.decrypt(mensaje_bytes)
+            MD5_descifrado = eliminar_relleno(MD5_descifrado)
+            hash_MD5_original = MD5_descifrado.decode()
+            print("este es el mensaje recibido:", mensaje)
+
+            print("hash_MD5 original", hash_MD5_original)
+
+            hash_md5_calculado = hashlib.md5(mensaje.encode()).hexdigest()
+            print("Bloque Hash calculado:", hash_md5_calculado)
+
+            if hash_MD5_original == hash_md5_calculado:
+                print("El mensaje es íntegro. Bloques Hash coinciden.")
+            else:
+                print("El mensaje no es íntegro. Bloques Hash no coinciden.")
+        except:
+            print("Error al descifrar el mensaje")
+
+
+def eliminar_relleno(datos):
+    longitud_relleno = datos[-1]
+    return datos[:-longitud_relleno]
 
 
 def guardar_resultado(resultado):
@@ -52,8 +79,7 @@ def guardar_resultado(resultado):
 
 
 def cifrar_hash(hash_md5, clave):
-    print(clave)
-    clave = clave.ljust(32)[:32]  # Asegurarse de que la clave tenga 32 bytes
+    clave = clave.ljust(32)[:32]
     cifrador = AES.new(clave.encode(), AES.MODE_ECB)
     hash_bytes = hash_md5.encode()
     longitud_relleno = 16 - (len(hash_bytes) % 16)
@@ -77,8 +103,9 @@ def cliente():
     print("=== Menú Principal ===")
     print("1. Registrarse")
     print("2. Firmar Mensaje")
-    print("3. Autenticar Identidad")
-    print("4. Verificar Integridad")
+    print("3. Descifrar Mensaje")
+    print("4. Autenticar Identidad")
+
     opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
@@ -87,7 +114,7 @@ def cliente():
         identidad = input("Ingrese su nombre: ")
         procesar_archivo_entrada(servidor_a, identidad)
     elif opcion == "3":
-        print("Opción no válida.")
+        descifrar_mensaje()
     elif opcion == "4":
         print("Opción no válida.")
     else:
