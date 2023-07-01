@@ -53,6 +53,7 @@ def descifrar_mensaje():
             MD5_descifrado = cifrador.decrypt(mensaje_bytes)
             MD5_descifrado = eliminar_relleno(MD5_descifrado)
             hash_MD5_original = MD5_descifrado.decode()
+            print("este es la clave:", clave)
             print("este es el mensaje recibido:", mensaje)
 
             print("hash_MD5 original", hash_MD5_original)
@@ -88,6 +89,18 @@ def cifrar_hash(hash_md5, clave):
     hash_cifrado_base64 = base64.b64encode(hash_cifrado).decode()
     return hash_cifrado_base64
 
+def autenticar_identidad(servidor_b):
+    clave = input("Ingrese la clave del usuario: ")
+    servidor_b.send(("AUTENTICAR_IDENTIDAD " + clave).encode())
+    respuesta = servidor_b.recv(1024).decode()
+    if respuesta.startswith("USUARIO_EXISTE"):
+        nombre = respuesta.split()[1]
+        print("EL firmante existe.")
+        print("Nombre: ", nombre)
+        print("Clave: ", clave)
+    else:
+        print("El usuario no existe.")
+
 
 def cliente():
     host = "localhost"
@@ -116,7 +129,7 @@ def cliente():
     elif opcion == "3":
         descifrar_mensaje()
     elif opcion == "4":
-        print("Opción no válida.")
+        autenticar_identidad(servidor_b)
     else:
         print("Opción no reconocida.")
 

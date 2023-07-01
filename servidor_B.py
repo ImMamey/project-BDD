@@ -1,55 +1,49 @@
 import socket
 import sqlite3
-import hashlib
 
 def autenticar_identidad(clave):
+    # Conexión a la base de datos
     conn = sqlite3.connect('usuarios.db')
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM usuarios WHERE clave = ?", (clave,))
+    # Ejecutar consulta SQL para verificar la identidad del usuario
+    cursor.execute("SELECT nombre FROM usuarios WHERE clave=?", (clave,))
     resultado = cursor.fetchone()
 
+    if resultado:
+        nombre = resultado[0]
+        respuesta = "USUARIO_EXISTE " + nombre
+    else:
+        respuesta = "USUARIO_NO_EXISTE"
+
+    # Cerrar la conexión a la base de datos
+    cursor.close()
     conn.close()
 
-    if resultado:
-        return True
-    else:
-        return False
+    return respuesta
 
-def handle_cliente_servidor_b(cliente):
-    while True:
-        data = cliente.recv(1024).decode()
-        if not data:
-            break
-        
-        # Procesar solicitud del cliente
-        comando, *parametros = data.split()
-        
-        if comando == "AUTENTICAR_IDENTIDAD":
-            clave = parametros[0]
-            if autenticar_identidad(clave):
-                cliente.send(b"VALIDA\n")
-            else:
-                cliente.send(b"INVALIDA\n")
-        
-        else:
-            cliente.send(b"Comando no reconocido\n")
-    
-    cliente.close()
-
-def iniciar_servidor_b():
+def servidor_b():
     host = "localhost"
-    port = 5001
-    
-    servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    servidor.bind((host, port))
-    servidor.listen(1)
-    
-    print("Servidor B iniciado en {}:{}".format(host, port))
-    
-    while True:
-        cliente, direccion = servidor.accept()
-        print("Cliente conectado desde:", direccion)
-        handle_cliente_servidor_b(cliente)
+    puerto_b = 5001
 
-iniciar_servidor_b()
+    servidor_b = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    servidor_b.bind((host, puerto_b))
+    servidor_b.listen(1)
+
+    print("Servidor B en espera de conexiones...")
+
+    while True:
+        conn, addr = servidor_b.accept()
+        print("Cliente conectado:", addr)
+
+        opcion = conn.recv(1024).decode()
+        if opcion.startswith("AUTENTICAR_IDENTIDAD"):
+            clave = opcion.split()[1]
+            respuesta = autenticar_identidad(clave)
+            conn.send(respuesta.encode())
+
+        conn.close()
+
+
+if __name__ == "__main__":
+    servidor_b()
