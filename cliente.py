@@ -21,6 +21,10 @@ def registrar_usuario(servidor_a):
     print(respuesta)
 
 
+def crear_archivo_entrada(resultado):
+     with open("entrada.txt", "w") as archivo_salida:
+        archivo_salida.write(resultado)
+
 def procesar_archivo_entrada(servidor_a, identidad2):
     with open("entrada.txt", "r") as archivo_entrada:
         identidad = archivo_entrada.readline().strip()
@@ -125,6 +129,9 @@ def cliente():
         registrar_usuario(servidor_a)
     elif opcion == "2":
         identidad = input("Ingrese su nombre: ")
+        mensaje = input("Ingrese su mensaje: ")
+        resultado = f"{identidad}\n{mensaje}\n0"
+        crear_archivo_entrada(resultado)
         procesar_archivo_entrada(servidor_a, identidad)
     elif opcion == "3":
         descifrar_mensaje()
