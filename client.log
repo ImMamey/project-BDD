@@ -71,3 +71,16 @@ ConnectionRefusedError: [WinError 10061] No connection could be made because the
 2023-06-30 19:38:00 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
 2023-06-30 19:38:00 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
 2023-06-30 19:38:12 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 21:22:38 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 21:22:38 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 21:23:02 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 21:38:17 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 21:38:17 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 21:38:33 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 21:39:52 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 21:39:52 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 21:40:02 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 21:43:44 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 21:43:44 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 21:43:52 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 21:47:26 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.

@@ -67,19 +67,24 @@ class Server:
         comando = str(re_gex_commando.search(data).group())
 
         if comando == "REGISTRAR":
-            """Ejemplo: [REGISTRAR] 24464628 |!| Victor"""
+            """e.g.: [REGISTRAR] 24464628 |!| Victor"""
             cedula: str = str(re_gex_despuesDelHeader.search(data).group())
             nombre: str = str(re_gex_despuesDelSeparador.search(data).group())
 
-            # TODO: implementar el codigo de hernani.
-            # servidor_a.send(("REGISTRAR_USUARIO {} {}".format(cedula, nombre)).encode())
-            # respuesta = servidor_a.recv(1024).decode().strip()
             LOG.info(
                 "Iniciado proceso para la opcion: %s con datos:\n cedula: %s\n Nombre: %s"
                 % (comando, cedula, nombre)
             )
+            try:
+                servidor_a.send(("REGISTRAR_USUARIO {} {}".format(int(cedula), nombre)).encode())
+                respuesta = servidor_a.recv(1024).decode().strip()
+                print(respuesta)
+            except:
+                LOG.exception("No se pudo enviar o recibir respuesta para Registrar un usuario.")
+
+
         elif comando == "FIRMAR":
-            """Ejemplo: [FIRMAR] 24464628 |!| Habia una vez un perro feo"""
+            """e.g.: [FIRMAR] 24464628 |!| Habia una vez un perro feo"""
             identidad: str = str(re_gex_despuesDelHeader.search(data).group())
             mensaje: str = str(re_gex_despuesDelSeparador.search(data).group())
 
@@ -92,7 +97,7 @@ class Server:
             )
 
         elif comando == "AUTENTICAR":
-            """Ejemplo: [AUTENTICAR] 24464628"""
+            """e.g.: [AUTENTICAR] 24464628"""
             identidad: str = str(re_gex_despuesDelHeader.search(data).group())
 
             # TODO: implementar el código de hernani.
@@ -104,7 +109,7 @@ class Server:
             )
 
         elif comando == "VERIFICAR":
-            """Ejemplo: [VERIFICAR] OWOWOWOWOWOWOOWOW |!| miguel"""
+            """e.g.: [VERIFICAR] OWOWOWOWOWOWOOWOW |!| miguel"""
             mensaje: str = str(re_gex_despuesDelHeader.search(data).group())
             firma: str = str(re_gex_despuesDelSeparador.search(data).group())
 
@@ -169,6 +174,18 @@ if __name__ == "__main__":
         datefmt="%Y-%m-%d %H:%M:%S",
         handlers=[logging.StreamHandler(), logging.FileHandler("proxy.log")],
     )
+
+    try:
+        host = "localhost"
+        puerto_a = 5000
+        puerto_b = 5001
+        servidor_a = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        servidor_b = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        servidor_a.connect((host, puerto_a))
+        servidor_b.connect((host, puerto_b))
+    except Exception as e:
+        LOG.exception("Error al conectarse con los servidores A y B.")
+
 
     LOG.info("[INICIANDO SERVIDOR] el servidor está iniciando....")
     s = Server()
