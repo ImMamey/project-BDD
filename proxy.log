@@ -105,3 +105,37 @@ ConnectionRefusedError: [WinError 10061] No connection could be made because the
 2023-07-02 13:39:27 - INFO - Proxy Server - Iniciado proceso para la opcion: FIRMAR con datos: 
 Identidad:  86720957  
  Mensaje: OWOWOWOWO
+2023-07-02 15:28:07 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 15:28:07 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 15:28:07 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 15:28:11 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 59588) connectado.
+2023-07-02 15:28:11 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 15:49:03 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 15:49:03 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 15:49:03 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 15:49:10 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 59973) connectado.
+2023-07-02 15:49:10 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 15:49:56 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 59983) connectado.
+2023-07-02 15:49:56 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 2
+2023-07-02 15:54:30 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 15:54:30 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 15:54:30 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 15:54:34 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60092) connectado.
+2023-07-02 15:54:34 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 15:54:45 - INFO - Proxy Server - Iniciado proceso para la opcion: AUTENTICAR con el dato:
+Identidad:  86720957 
+2023-07-02 15:57:52 - ERROR - Proxy Server - Error al conectarse con los servidores A y B.
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\proxy.py", line 302, in <module>
+    servidor_a.connect((host, puerto_a))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2023-07-02 15:57:52 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 15:57:52 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 15:57:52 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 15:58:18 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 15:58:18 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 15:58:18 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 15:58:29 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60104) connectado.
+2023-07-02 15:58:29 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 15:58:37 - INFO - Proxy Server - Iniciado proceso para la opcion: AUTENTICAR con el dato:
+Identidad:  86720957 

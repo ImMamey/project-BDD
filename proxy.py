@@ -64,6 +64,48 @@ class Server:
         hash_cifrado_base64 = base64.b64encode(hash_cifrado).decode()
         return hash_cifrado_base64
 
+    def eliminar_relleno(self, datos):
+        longitud_relleno = datos[-1]
+        return datos[:-longitud_relleno]
+
+    def obtener_hash_entrada(self):
+        with open("entrada.txt", "r") as archivo_entrada:
+            identidad = archivo_entrada.readline().strip()
+            mensaje = archivo_entrada.readline().strip()
+            firma = archivo_entrada.readline().strip()
+            hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
+            return hash_md5
+
+    # TODO: Cambiar printdebugs por LOGs en descifrar_mensaje
+    # TODO: Esto debe de retornar un string al cliente.
+    def descifrar_mensaje(self):
+        with open("salida.txt", "r") as archivo_salida:
+            clave = archivo_salida.readline().strip()
+            firma = archivo_salida.readline().strip()
+            mensaje = archivo_salida.readline().strip()
+            final = archivo_salida.readline().strip()
+            try:
+                clave = clave.ljust(32)[:32]
+                cifrador = AES.new(clave.encode(), AES.MODE_ECB)
+                mensaje_bytes = base64.b64decode(firma)
+                MD5_descifrado = cifrador.decrypt(mensaje_bytes)
+                MD5_descifrado = self.eliminar_relleno(MD5_descifrado)
+                hash_MD5_original = MD5_descifrado.decode()
+                print("este es la clave:", clave)
+                print("este es el mensaje recibido:", mensaje)
+                hash_entrada = self.obtener_hash_entrada()
+                print("hash_MD5 entrada", hash_entrada)
+                print("hash_MD5 salida", hash_MD5_original)
+                hash_md5_calculado = hashlib.md5(mensaje.encode()).hexdigest()
+                print("Bloque Hash calculado:", hash_md5_calculado)
+
+                if hash_MD5_original == hash_md5_calculado and hash_entrada == hash_md5_calculado:
+                    print("El mensaje es íntegro. Bloques Hash coinciden.")
+                else:
+                    print("El mensaje no es íntegro. Bloques Hash no coinciden.")
+            except:
+                print("Error al descifrar el mensaje")
+
     #TODO: estos dos son los mismos, verificar que no se puedan combinar para reducir codigo.
     def guardar_resultado(self,resultado):
         with open("salida.txt", "w") as archivo_salida:
@@ -73,6 +115,8 @@ class Server:
         with open("entrada.txt", "w") as archivo_salida:
             archivo_salida.write(resultado)
 
+    #TODO: Cambiar printdebugs por LOGs en processar_archivo_entrada
+    #TODO: esto debe de retornar un string al cliente
     def procesar_archivo_entrada(self,servidor_a, identidad2):
         with open("entrada.txt", "r") as archivo_entrada:
             identidad = archivo_entrada.readline().strip()
@@ -90,6 +134,19 @@ class Server:
                     print("No se pudo obtener la clave del servidor A")
             except:
                 print("error al cifrar")
+
+    # TODO: Cambiar printdebugs por LOGs en processar_archivo_entrada
+    # TODO: Esto debe de retornar un string al cliente.
+    def autenticar_identidad(self,servidor_b,clave):
+        servidor_b.send(("AUTENTICAR_IDENTIDAD " + clave).encode())
+        respuesta = servidor_b.recv(1024).decode()
+        if respuesta.startswith("USUARIO_EXISTE"):
+            nombre = respuesta.split()[1]
+            print("EL firmante existe.")
+            print("Nombre: ", nombre)
+            print("Clave: ", clave)
+        else:
+            print("El usuario no existe.")
 
     def string_sampler(self, data: str, addr):
         """
@@ -132,6 +189,7 @@ class Server:
                     "No se pudo enviar o recibir respuesta para Registrar un usuario."
                 )
 
+        # TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
         elif comando == "FIRMAR":
             """e.g.: [FIRMAR] 24464628 |!| Habia una vez un perro feo"""
             identidad: str = str(re_gex_despuesDelHeader.search(data).group())
@@ -150,19 +208,24 @@ class Server:
                 LOG.exception(
                     "No se pudo enviar o recibir respuesta para Firmar el mensaje."
                 )
-
+        # TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
         elif comando == "AUTENTICAR":
-            """e.g.: [AUTENTICAR] 24464628"""
+            """e.g.: [AUTENTICAR] 4568843548"""
             identidad: str = str(re_gex_despuesDelHeader.search(data).group())
 
             # TODO: implementar el código de hernani para autenticar.
-            # respuesta = autenticar_identidad(servidor_b, identidad)
-            # guardar_resultado(respuesta)
             LOG.info(
                 "Iniciado proceso para la opcion: %s con el dato:\nIdentidad: %s"
                 % (comando, identidad)
             )
+            try:
+                self.autenticar_identidad(servidor_b,identidad)
+            except:
+                LOG.exception(
+                "No se pudo autenticar la identidad."
+                )
 
+        # TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
         elif comando == "VERIFICAR":
             """e.g.: [VERIFICAR] OWOWOWOWOWOWOOWOW |!| miguel"""
             mensaje: str = str(re_gex_despuesDelHeader.search(data).group())

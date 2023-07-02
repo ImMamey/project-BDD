@@ -98,9 +98,9 @@ def opcion_autenticar_identidad() -> None:
     :return: None
     """
     print("=== Autenticar Identidad ===")
-    identidad = input("\nIngrese su identidad:\n ")
+    identidad = input("\nIngrese la clave de su usuario:\n ")
     LOG.info(f"Cliente {cl.ADDR} solicitado autenticar Identidad.")
-    msg = "[AUTENTICAR] " + str(identidad)
+    msg = "[AUTENTICAR] " + str(identidad) + " |!| "
     print(msg)
 
     cl.send(str(msg))
@@ -140,7 +140,7 @@ if __name__ == "__main__":
         1: "1. Registrarse.",
         2: "2. Firmar mensaje.",
         3: "3. Autenticar Identidad.",
-        4: "4. Verificar Integridad.",
+        4: "4. Descifrar Mensaje.",
         5: "5. Salir",
     }
 
