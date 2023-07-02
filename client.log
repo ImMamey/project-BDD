@@ -102,3 +102,15 @@ ConnectionRefusedError: [WinError 10061] No connection could be made because the
 2023-07-02 15:58:29 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
 2023-07-02 15:58:29 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
 2023-07-02 15:58:37 - INFO - Cliente - Cliente ('localhost', 5555) solicitado autenticar Identidad.
+2023-07-02 16:12:42 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 16:12:42 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 16:12:50 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.
+2023-07-02 16:16:03 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 16:16:03 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 16:16:07 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.
+2023-07-02 16:17:09 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 16:17:09 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 16:17:15 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.
+2023-07-02 16:18:44 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-07-02 16:19:04 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 16:19:16 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.

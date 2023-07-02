@@ -104,7 +104,7 @@ class Server:
                 else:
                     print("El mensaje no es íntegro. Bloques Hash no coinciden.")
             except:
-                print("Error al descifrar el mensaje")
+                LOG.exception("Error al descifrar el mensaje")
 
     #TODO: estos dos son los mismos, verificar que no se puedan combinar para reducir codigo.
     def guardar_resultado(self,resultado):
@@ -133,7 +133,7 @@ class Server:
                 else:
                     print("No se pudo obtener la clave del servidor A")
             except:
-                print("error al cifrar")
+                LOG.exception("Error al cifrar.")
 
     # TODO: Cambiar printdebugs por LOGs en processar_archivo_entrada
     # TODO: Esto debe de retornar un string al cliente.
@@ -171,14 +171,13 @@ class Server:
         #TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
         if comando == "REGISTRAR":
             """e.g.: [REGISTRAR] 24464628 |!| Victor"""
-            cedula: str = str(re_gex_despuesDelHeader.search(data).group())
-            nombre: str = str(re_gex_despuesDelSeparador.search(data).group())
-
-            LOG.info(
-                "Iniciado proceso para la opcion: %s con datos:\n cedula: %s\n Nombre: %s"
-                % (comando, cedula, nombre)
-            )
             try:
+                cedula: str = str(re_gex_despuesDelHeader.search(data).group())
+                nombre: str = str(re_gex_despuesDelSeparador.search(data).group())
+                LOG.info(
+                    "Iniciado proceso para la opcion: %s con datos:\n cedula: %s\n Nombre: %s"
+                    % (comando, cedula, nombre)
+                )
                 servidor_a.send(
                     ("REGISTRAR_USUARIO {} {}".format(int(cedula), nombre)).encode()
                 )
@@ -192,15 +191,13 @@ class Server:
         # TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
         elif comando == "FIRMAR":
             """e.g.: [FIRMAR] 24464628 |!| Habia una vez un perro feo"""
-            identidad: str = str(re_gex_despuesDelHeader.search(data).group())
-            mensaje: str = str(re_gex_despuesDelSeparador.search(data).group())
-
-            # TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
-            LOG.info(
-                "Iniciado proceso para la opcion: %s con datos: \nIdentidad: %s \n Mensaje: %s"
-                % (comando, identidad, mensaje)
-            )
             try:
+                identidad: str = str(re_gex_despuesDelHeader.search(data).group())
+                mensaje: str = str(re_gex_despuesDelSeparador.search(data).group())
+                LOG.info(
+                    "Iniciado proceso para la opcion: %s con datos: \nIdentidad: %s \n Mensaje: %s"
+                    % (comando, identidad, mensaje)
+                )
                 resultado = f"{identidad}\n{mensaje}\n0"
                 self.crear_archivo_entrada(resultado)
                 self.procesar_archivo_entrada(servidor_a, identidad)
@@ -211,14 +208,12 @@ class Server:
         # TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
         elif comando == "AUTENTICAR":
             """e.g.: [AUTENTICAR] 4568843548"""
-            identidad: str = str(re_gex_despuesDelHeader.search(data).group())
-
-            # TODO: implementar el código de hernani para autenticar.
-            LOG.info(
-                "Iniciado proceso para la opcion: %s con el dato:\nIdentidad: %s"
-                % (comando, identidad)
-            )
             try:
+                identidad: str = str(re_gex_despuesDelHeader.search(data).group())
+                LOG.info(
+                    "Iniciado proceso para la opcion: %s con el dato:\nIdentidad: %s"
+                    % (comando, identidad)
+                )
                 self.autenticar_identidad(servidor_b,identidad)
             except:
                 LOG.exception(
@@ -228,16 +223,24 @@ class Server:
         # TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
         elif comando == "VERIFICAR":
             """e.g.: [VERIFICAR] OWOWOWOWOWOWOOWOW |!| miguel"""
-            mensaje: str = str(re_gex_despuesDelHeader.search(data).group())
-            firma: str = str(re_gex_despuesDelSeparador.search(data).group())
+            #mensaje: str = str(re_gex_despuesDelHeader.search(data).group())
+            #firma: str = str(re_gex_despuesDelSeparador.search(data).group())
 
             # TODO: implementar el código de hernani para verificar.
             # resultado = verificar_integridad(firma, mensaje)
             # guardar_resultado(resultado)
             LOG.info(
-                "Iniciado proceso para la opcion: %s con datos: \n Mensaje: %s \nFirma: %s"
-                % (comando, mensaje, firma)
+                "Iniciado proceso para la opcion: %s"
+                % (comando)
             )
+            try:
+                self.descifrar_mensaje()
+            except:
+                LOG.exception(
+                "No se pudo completar la petición de desciración/verificacion de integridad."
+                )
+
+
 
         # return respuesta
 

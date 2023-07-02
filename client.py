@@ -112,10 +112,10 @@ def opcion_verificar_integridad() -> None:
     :return: None
     """
     print("=== Verificar Integridad ===")
-    mensaje = input("\nIngrese el mensaje: \n")
-    firma = input("Ingrese la firma del mensaje: \n")
+    #mensaje = input("\nIngrese el mensaje: \n")
+    #firma = input("Ingrese la firma del mensaje: \n")
     LOG.info(f"Cliente {cl.ADDR} solicitado verificar integridad.")
-    msg = "[VERIFICAR] " + str(mensaje) + " |!| " + str(firma)
+    msg = "[VERIFICAR] " #+ str(mensaje) + " |!| " + str(firma)
     print(msg)
 
     cl.send(str(msg))
@@ -152,10 +152,12 @@ if __name__ == "__main__":
         if opcion == "1":
             opcion_registrar_usuario()
         elif opcion == "2":
+            #TODO: firmar
             opcion_firmar_mensaje()
         elif opcion == "3":
             opcion_autenticar_identidad()
         elif opcion == "4":
+            #TODO: verificar_integridad()
             opcion_verificar_integridad()
         elif opcion == "5":
             detente = True
