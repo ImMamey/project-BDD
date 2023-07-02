@@ -59,7 +59,6 @@ def handle_cliente_servidor_a(cliente):
                 cliente.send(clave.encode())
             else:
                 cliente.send(b"Clave no encontrada\n")
-
         else:
             cliente.send(b"Comando no reconocido\n")
 

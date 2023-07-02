@@ -22,7 +22,21 @@ def autenticar_identidad(clave):
 
     return respuesta
 
-def servidor_b():
+def handle_cliente_servidor_b(cliente):
+    while True:
+        data = cliente.recv(1024).decode()
+        if not data:
+            break
+
+        opcion, clave = data.split()
+        if opcion == "AUTENTICAR_IDENTIDAD":
+            print("aaa")
+            respuesta = autenticar_identidad(clave)
+            cliente.send(respuesta.encode())
+
+    cliente.close()
+
+def iniciar_servidor_b():
     host = "localhost"
     puerto_b = 5001
 
@@ -35,15 +49,7 @@ def servidor_b():
     while True:
         conn, addr = servidor_b.accept()
         print("Cliente conectado:", addr)
-
-        opcion = conn.recv(1024).decode()
-        if opcion.startswith("AUTENTICAR_IDENTIDAD"):
-            clave = opcion.split()[1]
-            respuesta = autenticar_identidad(clave)
-            conn.send(respuesta.encode())
-
-        conn.close()
-
+        handle_cliente_servidor_b(conn)
 
 if __name__ == "__main__":
-    servidor_b()
+    iniciar_servidor_b()
