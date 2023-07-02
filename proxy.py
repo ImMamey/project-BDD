@@ -1,6 +1,9 @@
 import socket
 import threading
 import logging
+import base64
+import hashlib
+from Crypto.Cipher import AES
 
 LOG = logging.getLogger("Proxy Server")
 
@@ -46,7 +49,49 @@ class Server:
             self.server: socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.bind(self.ADDR)
 
-    def string_sampler(sel, data: str, addr):
+    def solicitar_clave(self, servidor_a, identidad):
+        servidor_a.send(("SOLICITAR_CLAVE " + identidad).encode())
+        clave = servidor_a.recv(1024).decode()
+        return clave
+
+    def cifrar_hash(self,hash_md5, clave):
+        clave = clave.ljust(32)[:32]
+        cifrador = AES.new(clave.encode(), AES.MODE_ECB)
+        hash_bytes = hash_md5.encode()
+        longitud_relleno = 16 - (len(hash_bytes) % 16)
+        hash_relleno = hash_bytes + bytes([longitud_relleno] * longitud_relleno)
+        hash_cifrado = cifrador.encrypt(hash_relleno)
+        hash_cifrado_base64 = base64.b64encode(hash_cifrado).decode()
+        return hash_cifrado_base64
+
+    #TODO: estos dos son los mismos, verificar que no se puedan combinar para reducir codigo.
+    def guardar_resultado(self,resultado):
+        with open("salida.txt", "w") as archivo_salida:
+            archivo_salida.write(resultado)
+
+    def crear_archivo_entrada(self, resultado):
+        with open("entrada.txt", "w") as archivo_salida:
+            archivo_salida.write(resultado)
+
+    def procesar_archivo_entrada(self,servidor_a, identidad2):
+        with open("entrada.txt", "r") as archivo_entrada:
+            identidad = archivo_entrada.readline().strip()
+            mensaje = archivo_entrada.readline().strip()
+            firma = archivo_entrada.readline().strip()
+            try:
+                clave = self.solicitar_clave(servidor_a, identidad2)
+                if clave:
+                    hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
+                    firma = self.cifrar_hash(hash_md5, clave)
+                    resultado = f"{clave}\n{firma}\n{mensaje}\n0"
+                    self.guardar_resultado(resultado)
+                    print("Firma generada y guardada en salida.txt")
+                else:
+                    print("No se pudo obtener la clave del servidor A")
+            except:
+                print("error al cifrar")
+
+    def string_sampler(self, data: str, addr):
         """
         Esta funcion, permite verificar los datos enviados por cada cliente, y responde y filtra cada solicitud.
         :param data: Inofrmacion de cada cliente
@@ -66,6 +111,7 @@ class Server:
 
         comando = str(re_gex_commando.search(data).group())
 
+        #TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
         if comando == "REGISTRAR":
             """e.g.: [REGISTRAR] 24464628 |!| Victor"""
             cedula: str = str(re_gex_despuesDelHeader.search(data).group())
@@ -91,13 +137,19 @@ class Server:
             identidad: str = str(re_gex_despuesDelHeader.search(data).group())
             mensaje: str = str(re_gex_despuesDelSeparador.search(data).group())
 
-            # TODO: implementar el código de hernani para firmar.
-            # resultado = firmar_mensaje(servidor_a, identidad, mensaje)
-            # guardar_resultado(resultado)
+            # TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
             LOG.info(
                 "Iniciado proceso para la opcion: %s con datos: \nIdentidad: %s \n Mensaje: %s"
                 % (comando, identidad, mensaje)
             )
+            try:
+                resultado = f"{identidad}\n{mensaje}\n0"
+                self.crear_archivo_entrada(resultado)
+                self.procesar_archivo_entrada(servidor_a, identidad)
+            except:
+                LOG.exception(
+                    "No se pudo enviar o recibir respuesta para Firmar el mensaje."
+                )
 
         elif comando == "AUTENTICAR":
             """e.g.: [AUTENTICAR] 24464628"""
