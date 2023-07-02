@@ -188,7 +188,7 @@ class Server:
                     "No se pudo enviar o recibir respuesta para Registrar un usuario."
                 )
 
-        # TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
+        # TODO: Eliminar esta funcion
         elif comando == "FIRMAR":
             """e.g.: [FIRMAR] 24464628 |!| Habia una vez un perro feo"""
             try:
@@ -220,7 +220,7 @@ class Server:
                 "No se pudo autenticar la identidad."
                 )
 
-        # TODO: La respuesta debe de ser enviada al client.py, actualmente se envia es la consola de proxy.
+        # TODO: Eliminar esta función.
         elif comando == "VERIFICAR":
             """e.g.: [VERIFICAR] OWOWOWOWOWOWOOWOW |!| miguel"""
             #mensaje: str = str(re_gex_despuesDelHeader.search(data).group())
