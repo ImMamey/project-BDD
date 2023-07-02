@@ -43,6 +43,14 @@ def procesar_archivo_entrada(servidor_a, identidad2):
         except:
             print("error al cifrar")
 
+def obtener_hash_entrada():
+    with open("entrada.txt", "r") as archivo_entrada:
+        identidad = archivo_entrada.readline().strip()
+        mensaje = archivo_entrada.readline().strip()
+        firma = archivo_entrada.readline().strip()
+        hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
+        return hash_md5
+
 
 def descifrar_mensaje():
     with open("salida.txt", "r") as archivo_salida:
@@ -59,13 +67,13 @@ def descifrar_mensaje():
             hash_MD5_original = MD5_descifrado.decode()
             print("este es la clave:", clave)
             print("este es el mensaje recibido:", mensaje)
-
-            print("hash_MD5 original", hash_MD5_original)
-
+            hash_entrada = obtener_hash_entrada()
+            print("hash_MD5 entrada", hash_entrada)
+            print("hash_MD5 salida", hash_MD5_original)
             hash_md5_calculado = hashlib.md5(mensaje.encode()).hexdigest()
             print("Bloque Hash calculado:", hash_md5_calculado)
 
-            if hash_MD5_original == hash_md5_calculado:
+            if hash_MD5_original == hash_md5_calculado and hash_entrada == hash_md5_calculado:
                 print("El mensaje es íntegro. Bloques Hash coinciden.")
             else:
                 print("El mensaje no es íntegro. Bloques Hash no coinciden.")
