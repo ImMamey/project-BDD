@@ -76,12 +76,15 @@ class Server:
                 % (comando, cedula, nombre)
             )
             try:
-                servidor_a.send(("REGISTRAR_USUARIO {} {}".format(int(cedula), nombre)).encode())
+                servidor_a.send(
+                    ("REGISTRAR_USUARIO {} {}".format(int(cedula), nombre)).encode()
+                )
                 respuesta = servidor_a.recv(1024).decode().strip()
                 print(respuesta)
             except:
-                LOG.exception("No se pudo enviar o recibir respuesta para Registrar un usuario.")
-
+                LOG.exception(
+                    "No se pudo enviar o recibir respuesta para Registrar un usuario."
+                )
 
         elif comando == "FIRMAR":
             """e.g.: [FIRMAR] 24464628 |!| Habia una vez un perro feo"""
@@ -185,7 +188,6 @@ if __name__ == "__main__":
         servidor_b.connect((host, puerto_b))
     except Exception as e:
         LOG.exception("Error al conectarse con los servidores A y B.")
-
 
     LOG.info("[INICIANDO SERVIDOR] el servidor está iniciando....")
     s = Server()

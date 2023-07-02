@@ -9,7 +9,7 @@ def generar_clave():
 
 
 def registrar_usuario(cedula, nombre, clave):
-    conn = sqlite3.connect('usuarios.db')
+    conn = sqlite3.connect("usuarios.db")
     cursor = conn.cursor()
 
     # Verificar si el usuario ya está registrado
@@ -22,7 +22,10 @@ def registrar_usuario(cedula, nombre, clave):
         respuesta = f"Ya estás registrado. Tu clave es: {clave_registrada}"
     else:
         # Usuario nuevo
-        cursor.execute("INSERT INTO usuarios (cedula, clave, nombre) VALUES (?, ?, ?)", (cedula, clave, nombre))
+        cursor.execute(
+            "INSERT INTO usuarios (cedula, clave, nombre) VALUES (?, ?, ?)",
+            (cedula, clave, nombre),
+        )
         conn.commit()
         respuesta = f"Usuario registrado. Tu clave es: {clave}"
 

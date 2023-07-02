@@ -1,9 +1,10 @@
 import socket
 import sqlite3
 
+
 def autenticar_identidad(clave):
     # Conexión a la base de datos
-    conn = sqlite3.connect('usuarios.db')
+    conn = sqlite3.connect("usuarios.db")
     cursor = conn.cursor()
 
     # Ejecutar consulta SQL para verificar la identidad del usuario
@@ -21,6 +22,7 @@ def autenticar_identidad(clave):
     conn.close()
 
     return respuesta
+
 
 def servidor_b():
     host = "localhost"
