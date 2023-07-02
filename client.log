@@ -114,3 +114,76 @@ ConnectionRefusedError: [WinError 10061] No connection could be made because the
 2023-07-02 16:18:44 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
 2023-07-02 16:19:04 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
 2023-07-02 16:19:16 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.
+2023-07-02 17:12:53 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 17:12:53 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 17:14:25 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-07-02 17:51:49 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 17:51:49 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 17:52:04 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-07-02 17:52:28 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 17:58:38 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 17:58:38 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 17:58:52 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:00:56 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:00:56 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:01:04 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:03:16 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:03:16 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:03:23 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:03:23 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 113, in procesar_archivo_entrada
+    n.listen()
+OSError: [WinError 10056] A connect request was made on an already connected socket
+2023-07-02 18:05:27 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:05:27 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:05:34 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:05:34 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 114, in procesar_archivo_entrada
+    conn, addr = cl.client.accept()
+  File "C:\Python310\lib\socket.py", line 293, in accept
+    fd, addr = self._accept()
+OSError: [WinError 10022] An invalid argument was supplied
+2023-07-02 18:10:16 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:10:16 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:10:24 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:10:24 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 113, in procesar_archivo_entrada
+    cl.client.listen()
+OSError: [WinError 10056] A connect request was made on an already connected socket
+2023-07-02 18:11:07 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:11:07 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:11:16 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:11:16 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 114, in procesar_archivo_entrada
+    conn, addr = cl.client.accept()
+  File "C:\Python310\lib\socket.py", line 293, in accept
+    fd, addr = self._accept()
+OSError: [WinError 10022] An invalid argument was supplied
+2023-07-02 18:18:42 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:18:42 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:18:51 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:18:51 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 117, in procesar_archivo_entrada
+    msg_length = '127.0.0.1'.recv(cl.HEADER).decode(cl.FORMAT)
+AttributeError: 'str' object has no attribute 'recv'
+2023-07-02 18:20:02 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:20:02 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:20:08 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:20:08 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 117, in procesar_archivo_entrada
+    msg_length = cl.ADDR.recv(cl.HEADER).decode(cl.FORMAT)
+AttributeError: 'tuple' object has no attribute 'recv'
+2023-07-02 18:20:53 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:20:53 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:20:59 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:20:59 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 117, in procesar_archivo_entrada
+    msg_length = cl.ADDR[0].recv(cl.HEADER).decode(cl.FORMAT)
+AttributeError: 'str' object has no attribute 'recv'

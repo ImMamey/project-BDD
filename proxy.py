@@ -49,20 +49,6 @@ class Server:
             self.server: socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.server.bind(self.ADDR)
 
-    def solicitar_clave(self, servidor_a, identidad):
-        servidor_a.send(("SOLICITAR_CLAVE " + identidad).encode())
-        clave = servidor_a.recv(1024).decode()
-        return clave
-
-    def cifrar_hash(self,hash_md5, clave):
-        clave = clave.ljust(32)[:32]
-        cifrador = AES.new(clave.encode(), AES.MODE_ECB)
-        hash_bytes = hash_md5.encode()
-        longitud_relleno = 16 - (len(hash_bytes) % 16)
-        hash_relleno = hash_bytes + bytes([longitud_relleno] * longitud_relleno)
-        hash_cifrado = cifrador.encrypt(hash_relleno)
-        hash_cifrado_base64 = base64.b64encode(hash_cifrado).decode()
-        return hash_cifrado_base64
 
     def eliminar_relleno(self, datos):
         longitud_relleno = datos[-1]
@@ -106,35 +92,6 @@ class Server:
             except:
                 LOG.exception("Error al descifrar el mensaje")
 
-    #TODO: estos dos son los mismos, verificar que no se puedan combinar para reducir codigo.
-    def guardar_resultado(self,resultado):
-        with open("salida.txt", "w") as archivo_salida:
-            archivo_salida.write(resultado)
-
-    def crear_archivo_entrada(self, resultado):
-        with open("entrada.txt", "w") as archivo_salida:
-            archivo_salida.write(resultado)
-
-    #TODO: Cambiar printdebugs por LOGs en processar_archivo_entrada
-    #TODO: esto debe de retornar un string al cliente
-    def procesar_archivo_entrada(self,servidor_a, identidad2):
-        with open("entrada.txt", "r") as archivo_entrada:
-            identidad = archivo_entrada.readline().strip()
-            mensaje = archivo_entrada.readline().strip()
-            firma = archivo_entrada.readline().strip()
-            try:
-                clave = self.solicitar_clave(servidor_a, identidad2)
-                if clave:
-                    hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
-                    firma = self.cifrar_hash(hash_md5, clave)
-                    resultado = f"{clave}\n{firma}\n{mensaje}\n0"
-                    self.guardar_resultado(resultado)
-                    print("Firma generada y guardada en salida.txt")
-                else:
-                    print("No se pudo obtener la clave del servidor A")
-            except:
-                LOG.exception("Error al cifrar.")
-
     # TODO: Cambiar printdebugs por LOGs en processar_archivo_entrada
     # TODO: Esto debe de retornar un string al cliente.
     def autenticar_identidad(self,servidor_b,clave):
@@ -148,7 +105,16 @@ class Server:
         else:
             print("El usuario no existe.")
 
-    def string_sampler(self, data: str, addr):
+    def solicitar_clave(sef, identidad):
+        try:
+            servidor_a.send(("SOLICITAR_CLAVE " + identidad).encode())
+            clave = servidor_a.recv(1024).decode()
+            return clave
+        except:
+            LOG.exception("Error soy pendejo.")
+
+
+    def string_sampler(self, data: str, addr)->str:
         """
         Esta funcion, permite verificar los datos enviados por cada cliente, y responde y filtra cada solicitud.
         :param data: Inofrmacion de cada cliente
@@ -183,6 +149,7 @@ class Server:
                 )
                 respuesta = servidor_a.recv(1024).decode().strip()
                 print(respuesta)
+                return respuesta
             except:
                 LOG.exception(
                     "No se pudo enviar o recibir respuesta para Registrar un usuario."
@@ -190,17 +157,14 @@ class Server:
 
         # TODO: Eliminar esta funcion
         elif comando == "FIRMAR":
-            """e.g.: [FIRMAR] 24464628 |!| Habia una vez un perro feo"""
+            """e.g.: [FIRMAR] 24464628 |!| """
             try:
                 identidad: str = str(re_gex_despuesDelHeader.search(data).group())
-                mensaje: str = str(re_gex_despuesDelSeparador.search(data).group())
+                respuesta = self.solicitar_clave(identidad)
                 LOG.info(
-                    "Iniciado proceso para la opcion: %s con datos: \nIdentidad: %s \n Mensaje: %s"
-                    % (comando, identidad, mensaje)
+                    "Iniciado Proceso para solicitar clave para FIRMA del cliente"
                 )
-                resultado = f"{identidad}\n{mensaje}\n0"
-                self.crear_archivo_entrada(resultado)
-                self.procesar_archivo_entrada(servidor_a, identidad)
+                return respuesta
             except:
                 LOG.exception(
                     "No se pudo enviar o recibir respuesta para Firmar el mensaje."
@@ -260,11 +224,11 @@ class Server:
             if msg_length:
                 msg_length = int(msg_length)
                 msg = conn.recv(msg_length).decode(n.FORMAT)
-                self.string_sampler(msg, addr)
+                respuesta = self.string_sampler(msg, addr)
                 if msg == n.DISCONNECT_MESSAGE:
                     connected = False
                 print(f"[{addr}] {msg}")
-                conn.send("[SERVIDOR] Mensaje recibido.".encode(n.FORMAT))
+                conn.send(respuesta.encode(n.FORMAT))
 
     def start(self):
         """

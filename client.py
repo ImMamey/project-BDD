@@ -2,6 +2,9 @@ import socket
 import re
 import sys
 import logging
+import base64
+import hashlib
+from Crypto.Cipher import AES
 
 LOG = logging.getLogger("Cliente")
 
@@ -65,6 +68,11 @@ class Client:
         except Exception as e:
             LOG.exception("Error al enviar el mensaje.")
 
+# TODO: mover a #2 firmar mensaje dentro del proxy
+def solicitar_clave(servidor_a, identidad):
+    servidor_a.send(("SOLICITAR_CLAVE " + identidad).encode())
+    clave = servidor_a.recv(1024).decode()
+    return clave
 
 def opcion_registrar_usuario() -> None:
     print("=== Registro de Usuario ===")
@@ -72,10 +80,59 @@ def opcion_registrar_usuario() -> None:
     nombre = input("Ingrese su nombre:\n ")
     LOG.info(f"Cliente {cl.ADDR} solicitado Registrar un cliente.")
     msg = "[REGISTRAR] " + str(cedula) + " |!| " + str(nombre)
-    print(msg)
-
     cl.send(str(msg))
 
+def cifrar_hash(hash_md5, clave):
+    clave = clave.ljust(32)[:32]
+    cifrador = AES.new(clave.encode(), AES.MODE_ECB)
+    hash_bytes = hash_md5.encode()
+    longitud_relleno = 16 - (len(hash_bytes) % 16)
+    hash_relleno = hash_bytes + bytes([longitud_relleno] * longitud_relleno)
+    hash_cifrado = cifrador.encrypt(hash_relleno)
+    hash_cifrado_base64 = base64.b64encode(hash_cifrado).decode()
+    return hash_cifrado_base64
+
+def guardar_resultado(resultado):
+    with open("salida.txt", "w") as archivo_salida:
+        archivo_salida.write(resultado)
+
+def crear_archivo_entrada(resultado):
+    with open("entrada.txt", "w") as archivo_salida:
+        archivo_salida.write(resultado)
+
+def procesar_archivo_entrada(identidad2):
+    with open("entrada.txt", "r") as archivo_entrada:
+        identidad = archivo_entrada.readline().strip()
+        mensaje = archivo_entrada.readline().strip()
+        firma = archivo_entrada.readline().strip()
+        try:
+            msg = "[FIRMAR] " + str(identidad) + " |!| "
+            cl.send(str(msg))
+
+            #n = cl.client
+            cl.client.listen()
+            conn, addr = cl.client.accept()
+            connected: bool = True
+            while connected:
+                msg_length = conn.recv(cl.HEADER).decode(cl.FORMAT)
+                if msg_length:
+                    msg_length = int(msg_length)
+                    clave = conn.recv(msg_length).decode(cl.FORMAT)
+                    connected = False
+
+
+            #clave = solicitar_clave(servidor_a, identidad2)
+
+            if clave:
+                hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
+                firma = cifrar_hash(hash_md5, clave)
+                resultado = f"{clave}\n{firma}\n{mensaje}\n0"
+                guardar_resultado(resultado)
+                print("Firma generada y guardada en salida.txt")
+            else:
+                print("No se pudo obtener la clave del servidor A")
+        except:
+            LOG.exception("Error al cifrar")
 
 def opcion_firmar_mensaje() -> None:
     """
@@ -86,10 +143,14 @@ def opcion_firmar_mensaje() -> None:
     identidad = input("\n Ingrese su identidad: \n")
     mensaje = input("Ingrese el mensaje a firmar: \n ")
     LOG.info(f"Cliente {cl.ADDR} solicitado firmar un mensaje.")
-    msg = "[FIRMAR] " + str(identidad) + " |!| " + str(mensaje)
-    print(msg)
+    resultado = f"{identidad}\n{mensaje}\n0"
+    crear_archivo_entrada(resultado)
+    procesar_archivo_entrada(identidad)
 
-    cl.send(str(msg))
+    #msg = "[FIRMAR] " + str(identidad) + " |!| " + str(mensaje)
+    #print(msg)
+
+    #cl.send(str(msg))
 
 
 def opcion_autenticar_identidad() -> None:
@@ -102,23 +163,47 @@ def opcion_autenticar_identidad() -> None:
     LOG.info(f"Cliente {cl.ADDR} solicitado autenticar Identidad.")
     msg = "[AUTENTICAR] " + str(identidad) + " |!| "
     print(msg)
-
     cl.send(str(msg))
 
+def eliminar_relleno(datos):
+    longitud_relleno = datos[-1]
+    return datos[:-longitud_relleno]
 
-def opcion_verificar_integridad() -> None:
-    """
-    Envia datos al proxy para verificar integridad.
-    :return: None
-    """
-    print("=== Verificar Integridad ===")
-    #mensaje = input("\nIngrese el mensaje: \n")
-    #firma = input("Ingrese la firma del mensaje: \n")
-    LOG.info(f"Cliente {cl.ADDR} solicitado verificar integridad.")
-    msg = "[VERIFICAR] " #+ str(mensaje) + " |!| " + str(firma)
-    print(msg)
+def obtener_hash_entrada():
+    with open("entrada.txt", "r") as archivo_entrada:
+        identidad = archivo_entrada.readline().strip()
+        mensaje = archivo_entrada.readline().strip()
+        firma = archivo_entrada.readline().strip()
+        hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
+        return hash_md5
 
-    cl.send(str(msg))
+def descifrar_mensaje():
+    with open("salida.txt", "r") as archivo_salida:
+        clave = archivo_salida.readline().strip()
+        firma = archivo_salida.readline().strip()
+        mensaje = archivo_salida.readline().strip()
+        final = archivo_salida.readline().strip()
+        try:
+            clave = clave.ljust(32)[:32]
+            cifrador = AES.new(clave.encode(), AES.MODE_ECB)
+            mensaje_bytes = base64.b64decode(firma)
+            MD5_descifrado = cifrador.decrypt(mensaje_bytes)
+            MD5_descifrado = eliminar_relleno(MD5_descifrado)
+            hash_MD5_original = MD5_descifrado.decode()
+            print("este es la clave:", clave)
+            print("este es el mensaje recibido:", mensaje)
+            hash_entrada = obtener_hash_entrada()
+            print("hash_MD5 entrada", hash_entrada)
+            print("hash_MD5 salida", hash_MD5_original)
+            hash_md5_calculado = hashlib.md5(mensaje.encode()).hexdigest()
+            print("Bloque Hash calculado:", hash_md5_calculado)
+
+            if hash_MD5_original == hash_md5_calculado and hash_entrada == hash_md5_calculado:
+                print("El mensaje es íntegro. Bloques Hash coinciden.")
+            else:
+                print("El mensaje no es íntegro. Bloques Hash no coinciden.")
+        except:
+            print("Error al descifrar el mensaje")
 
 
 if __name__ == "__main__":
@@ -152,13 +237,11 @@ if __name__ == "__main__":
         if opcion == "1":
             opcion_registrar_usuario()
         elif opcion == "2":
-            #TODO: firmar
             opcion_firmar_mensaje()
         elif opcion == "3":
             opcion_autenticar_identidad()
         elif opcion == "4":
-            #TODO: verificar_integridad()
-            opcion_verificar_integridad()
+            descifrar_mensaje()
         elif opcion == "5":
             detente = True
             cl.send(cl.DISCONNECT_MESSAGE)
