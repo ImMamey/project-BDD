@@ -91,7 +91,7 @@ class Server:
             identidad: str = str(re_gex_despuesDelHeader.search(data).group())
             mensaje: str = str(re_gex_despuesDelSeparador.search(data).group())
 
-            # TODO: implementar el código de hernani.
+            # TODO: implementar el código de hernani para firmar.
             # resultado = firmar_mensaje(servidor_a, identidad, mensaje)
             # guardar_resultado(resultado)
             LOG.info(
@@ -103,7 +103,7 @@ class Server:
             """e.g.: [AUTENTICAR] 24464628"""
             identidad: str = str(re_gex_despuesDelHeader.search(data).group())
 
-            # TODO: implementar el código de hernani.
+            # TODO: implementar el código de hernani para autenticar.
             # respuesta = autenticar_identidad(servidor_b, identidad)
             # guardar_resultado(respuesta)
             LOG.info(
@@ -116,7 +116,7 @@ class Server:
             mensaje: str = str(re_gex_despuesDelHeader.search(data).group())
             firma: str = str(re_gex_despuesDelSeparador.search(data).group())
 
-            # TODO: implementar el código de hernani.
+            # TODO: implementar el código de hernani para verificar.
             # resultado = verificar_integridad(firma, mensaje)
             # guardar_resultado(resultado)
             LOG.info(
