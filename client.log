@@ -1,0 +1,250 @@
+2023-06-30 16:25:56 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 16:25:56 - INFO - Cliente - [NUEVO CLIENTE] (('localhost', 5555)) conectado.
+2023-06-30 16:44:53 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 16:44:53 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 16:45:21 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 16:45:21 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 16:45:23 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-06-30 16:47:47 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 16:47:47 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 16:47:51 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+
+2023-06-30 16:48:13 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 16:48:13 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 16:48:15 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+
+2023-06-30 16:48:49 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 16:48:49 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 16:48:59 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-06-30 16:49:27 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 16:49:27 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 16:49:34 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-06-30 17:07:02 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 17:07:02 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 17:07:04 - ERROR - Cliente - Error al tratarse de conectar al ProxyPor favor cerrar el cliente y verificar la coneccion.
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 39, in start
+    self.client.connect(self.ADDR)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2023-06-30 17:40:43 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 17:40:43 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 17:41:23 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 17:41:23 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 17:41:36 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 17:42:00 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-06-30 17:43:32 - INFO - Cliente - Cliente ('localhost', 5555) solicitado autenticar Identidad.
+2023-06-30 17:45:02 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 17:45:02 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 17:45:29 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 17:45:29 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 17:45:41 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 17:46:11 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-06-30 17:46:18 - INFO - Cliente - Cliente ('localhost', 5555) solicitado autenticar Identidad.
+2023-06-30 17:46:29 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.
+2023-06-30 17:49:22 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 17:49:22 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 17:49:47 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 17:49:47 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 17:50:14 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 17:50:41 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 18:17:58 - INFO - Cliente - [INICIANDO Cliente] el servidor está iniciando....
+2023-06-30 18:17:58 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 18:33:55 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 18:33:55 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 18:34:03 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 18:42:05 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 18:42:05 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 18:42:39 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 18:55:08 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 18:55:08 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 18:55:27 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 18:55:44 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-06-30 19:02:35 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 19:02:35 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 19:02:43 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 19:17:59 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-06-30 19:20:35 - INFO - Cliente - Cliente ('localhost', 5555) solicitado autenticar Identidad.
+2023-06-30 19:22:40 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.
+2023-06-30 19:36:36 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 19:36:36 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 19:36:47 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 19:38:00 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 19:38:00 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 19:38:12 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 21:22:38 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 21:22:38 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 21:23:02 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 21:38:17 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 21:38:17 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 21:38:33 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 21:39:52 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 21:39:52 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 21:40:02 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 21:43:44 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-06-30 21:43:44 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-06-30 21:43:52 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-06-30 21:47:26 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-07-02 13:33:45 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 13:33:45 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 13:34:03 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-07-02 13:39:27 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 15:28:11 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 15:28:11 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 15:28:31 - INFO - Cliente - Cliente ('localhost', 5555) solicitado autenticar Identidad.
+2023-07-02 15:49:09 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 15:49:09 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 15:49:56 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 15:49:56 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 15:50:40 - INFO - Cliente - Cliente ('localhost', 5555) solicitado autenticar Identidad.
+2023-07-02 15:54:34 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 15:54:34 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 15:54:45 - INFO - Cliente - Cliente ('localhost', 5555) solicitado autenticar Identidad.
+2023-07-02 15:58:29 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 15:58:29 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 15:58:37 - INFO - Cliente - Cliente ('localhost', 5555) solicitado autenticar Identidad.
+2023-07-02 16:12:42 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 16:12:42 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 16:12:50 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.
+2023-07-02 16:16:03 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 16:16:03 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 16:16:07 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.
+2023-07-02 16:17:09 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 16:17:09 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 16:17:15 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.
+2023-07-02 16:18:44 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-07-02 16:19:04 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 16:19:16 - INFO - Cliente - Cliente ('localhost', 5555) solicitado verificar integridad.
+2023-07-02 17:12:53 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 17:12:53 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 17:14:25 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-07-02 17:51:49 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 17:51:49 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 17:52:04 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-07-02 17:52:28 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 17:58:38 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 17:58:38 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 17:58:52 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:00:56 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:00:56 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:01:04 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:03:16 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:03:16 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:03:23 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:03:23 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 113, in procesar_archivo_entrada
+    n.listen()
+OSError: [WinError 10056] A connect request was made on an already connected socket
+2023-07-02 18:05:27 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:05:27 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:05:34 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:05:34 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 114, in procesar_archivo_entrada
+    conn, addr = cl.client.accept()
+  File "C:\Python310\lib\socket.py", line 293, in accept
+    fd, addr = self._accept()
+OSError: [WinError 10022] An invalid argument was supplied
+2023-07-02 18:10:16 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:10:16 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:10:24 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:10:24 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 113, in procesar_archivo_entrada
+    cl.client.listen()
+OSError: [WinError 10056] A connect request was made on an already connected socket
+2023-07-02 18:11:07 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:11:07 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:11:16 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:11:16 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 114, in procesar_archivo_entrada
+    conn, addr = cl.client.accept()
+  File "C:\Python310\lib\socket.py", line 293, in accept
+    fd, addr = self._accept()
+OSError: [WinError 10022] An invalid argument was supplied
+2023-07-02 18:18:42 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:18:42 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:18:51 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:18:51 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 117, in procesar_archivo_entrada
+    msg_length = '127.0.0.1'.recv(cl.HEADER).decode(cl.FORMAT)
+AttributeError: 'str' object has no attribute 'recv'
+2023-07-02 18:20:02 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:20:02 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:20:08 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:20:08 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 117, in procesar_archivo_entrada
+    msg_length = cl.ADDR.recv(cl.HEADER).decode(cl.FORMAT)
+AttributeError: 'tuple' object has no attribute 'recv'
+2023-07-02 18:20:53 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:20:53 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:20:59 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:20:59 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 117, in procesar_archivo_entrada
+    msg_length = cl.ADDR[0].recv(cl.HEADER).decode(cl.FORMAT)
+AttributeError: 'str' object has no attribute 'recv'
+2023-07-02 18:33:20 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:33:20 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:33:31 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:33:31 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 113, in procesar_archivo_entrada
+    conn, addr = cl.client.accept()
+  File "C:\Python310\lib\socket.py", line 293, in accept
+    fd, addr = self._accept()
+OSError: [WinError 10022] An invalid argument was supplied
+2023-07-02 18:36:43 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:36:43 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:36:45 - ERROR - Cliente - Error al tratarse de conectar al Proxy. Por favor, cerrar el cliente y verificar la coneccion.
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 45, in start
+    self.client.connect(self.ADDR)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2023-07-02 18:37:08 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:37:08 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:39:40 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:39:40 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:40:07 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:40:07 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:55:47 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:55:47 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:55:56 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:55:56 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 116, in procesar_archivo_entrada
+    conn, addr = cl.client.accept()
+  File "C:\Python310\lib\socket.py", line 293, in accept
+    fd, addr = self._accept()
+OSError: [WinError 10022] An invalid argument was supplied
+2023-07-02 19:03:45 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:03:45 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:03:53 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 19:09:59 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:09:59 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:10:18 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-07-02 19:10:30 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 19:15:05 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:15:05 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:15:15 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 19:18:13 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:18:13 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:18:54 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 19:23:56 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:23:56 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:24:07 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 19:35:02 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:35:02 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:35:28 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 20:14:56 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 20:14:56 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 20:15:09 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 20:19:37 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 20:19:37 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 20:19:48 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 20:21:00 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 20:21:00 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 20:21:12 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.

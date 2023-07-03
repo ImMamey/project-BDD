@@ -1,0 +1,337 @@
+2023-06-30 17:48:50 - INFO - server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 17:48:50 - INFO - server - El servidor esta activo en la IP: localhost
+2023-06-30 17:48:50 - INFO - server - [Escuchando] Servidor esta escuchando...
+2023-06-30 17:49:16 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 17:49:16 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 17:49:16 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 17:49:22 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 17:49:47 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 2
+2023-06-30 18:17:44 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 18:17:44 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 18:17:44 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 18:17:58 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 53923) connectado.
+2023-06-30 18:17:58 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 18:33:51 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 18:33:51 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 18:33:51 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 18:33:55 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 54097) connectado.
+2023-06-30 18:33:55 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 18:42:02 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 18:42:02 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 18:42:02 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 18:42:05 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 54171) connectado.
+2023-06-30 18:42:05 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 18:55:03 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 18:55:03 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 18:55:03 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 18:55:08 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 54344) connectado.
+2023-06-30 18:55:08 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 19:02:29 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 19:02:29 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 19:02:29 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 19:02:35 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 54423) connectado.
+2023-06-30 19:02:35 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 19:36:26 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 19:36:26 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 19:36:26 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 19:36:36 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 54742) connectado.
+2023-06-30 19:36:36 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 19:37:55 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 19:37:55 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 19:37:55 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 19:38:00 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 54798) connectado.
+2023-06-30 19:38:00 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 19:38:12 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  24464628 
+ Nombre: Victor Vásquez)
+2023-06-30 21:22:22 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 21:22:22 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 21:22:22 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 21:22:38 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60755) connectado.
+2023-06-30 21:22:38 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 21:23:02 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  24464628 
+ Nombre: Victor Vásquez
+2023-06-30 21:38:08 - ERROR - Proxy Server - Error al conectarse con los servidores A y B.
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\proxy.py", line 185, in <module>
+    servidor_b.connect((host, puerto_b))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2023-06-30 21:38:08 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 21:38:08 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 21:38:08 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 21:38:17 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60893) connectado.
+2023-06-30 21:38:17 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 21:38:33 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  24464628 
+ Nombre: Victor Vásquez
+2023-06-30 21:39:48 - ERROR - Proxy Server - Error al conectarse con los servidores A y B.
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\proxy.py", line 185, in <module>
+    servidor_b.connect((host, puerto_b))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2023-06-30 21:39:48 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 21:39:48 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 21:39:48 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 21:39:52 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60914) connectado.
+2023-06-30 21:39:52 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 21:40:02 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  24464628 
+ Nombre: Victor Vásquez
+2023-06-30 21:42:38 - ERROR - Proxy Server - Error al conectarse con los servidores A y B.
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\proxy.py", line 185, in <module>
+    servidor_b.connect((host, puerto_b))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2023-06-30 21:42:39 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-06-30 21:42:39 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-06-30 21:42:39 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-06-30 21:43:44 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60930) connectado.
+2023-06-30 21:43:44 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-06-30 21:43:52 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  24464628 
+ Nombre: Victor
+2023-06-30 21:47:26 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  24464628 
+ Nombre: Victor
+2023-07-02 13:33:36 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 13:33:36 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 13:33:36 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 13:33:45 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 58887) connectado.
+2023-07-02 13:33:45 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 13:34:03 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  24464628 
+ Nombre: Victor
+2023-07-02 13:39:27 - INFO - Proxy Server - Iniciado proceso para la opcion: FIRMAR con datos: 
+Identidad:  86720957  
+ Mensaje: OWOWOWOWO
+2023-07-02 15:28:07 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 15:28:07 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 15:28:07 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 15:28:11 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 59588) connectado.
+2023-07-02 15:28:11 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 15:49:03 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 15:49:03 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 15:49:03 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 15:49:10 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 59973) connectado.
+2023-07-02 15:49:10 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 15:49:56 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 59983) connectado.
+2023-07-02 15:49:56 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 2
+2023-07-02 15:54:30 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 15:54:30 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 15:54:30 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 15:54:34 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60092) connectado.
+2023-07-02 15:54:34 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 15:54:45 - INFO - Proxy Server - Iniciado proceso para la opcion: AUTENTICAR con el dato:
+Identidad:  86720957 
+2023-07-02 15:57:52 - ERROR - Proxy Server - Error al conectarse con los servidores A y B.
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\proxy.py", line 302, in <module>
+    servidor_a.connect((host, puerto_a))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2023-07-02 15:57:52 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 15:57:52 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 15:57:52 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 15:58:18 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 15:58:18 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 15:58:18 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 15:58:29 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60104) connectado.
+2023-07-02 15:58:29 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 15:58:37 - INFO - Proxy Server - Iniciado proceso para la opcion: AUTENTICAR con el dato:
+Identidad:  86720957 
+2023-07-02 16:12:34 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 16:12:34 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 16:12:34 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 16:12:42 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60174) connectado.
+2023-07-02 16:12:42 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 16:12:50 - INFO - Proxy Server - Iniciado proceso para la opcion: VERIFICAR
+2023-07-02 16:16:00 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 16:16:00 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 16:16:00 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 16:16:03 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60191) connectado.
+2023-07-02 16:16:03 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 16:16:07 - INFO - Proxy Server - Iniciado proceso para la opcion: VERIFICAR
+2023-07-02 16:17:05 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 16:17:05 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 16:17:05 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 16:17:09 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60198) connectado.
+2023-07-02 16:17:09 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 16:17:15 - INFO - Proxy Server - Iniciado proceso para la opcion: VERIFICAR
+2023-07-02 16:17:15 - ERROR - Proxy Server - Error al descifrar el mensaje
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\proxy.py", line 92, in descifrar_mensaje
+    MD5_descifrado = self.eliminar_relleno(MD5_descifrado)
+  File "D:\GitHub\project-BDD\proxy.py", line 68, in eliminar_relleno
+    longitud_relleno = datos[-1]
+IndexError: index out of range
+2023-07-02 16:18:44 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  24464628 
+ Nombre: Victor
+2023-07-02 16:19:04 - INFO - Proxy Server - Iniciado proceso para la opcion: FIRMAR con datos: 
+Identidad:  Victor  
+ Mensaje: Hola mundo como estan OwO
+2023-07-02 16:19:16 - INFO - Proxy Server - Iniciado proceso para la opcion: VERIFICAR
+2023-07-02 16:19:16 - ERROR - Proxy Server - Error al descifrar el mensaje
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\proxy.py", line 92, in descifrar_mensaje
+    MD5_descifrado = self.eliminar_relleno(MD5_descifrado)
+  File "D:\GitHub\project-BDD\proxy.py", line 68, in eliminar_relleno
+    longitud_relleno = datos[-1]
+IndexError: index out of range
+2023-07-02 17:12:48 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 17:12:48 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 17:12:48 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 17:12:53 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60633) connectado.
+2023-07-02 17:12:53 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 17:14:25 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  26254282 
+ Nombre: Sergio
+2023-07-02 17:51:43 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 17:51:43 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 17:51:43 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 17:51:49 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60848) connectado.
+2023-07-02 17:51:49 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 17:52:04 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  24464628 
+ Nombre: Victor
+2023-07-02 17:52:28 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 17:58:31 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 17:58:31 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 17:58:31 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 17:58:38 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60889) connectado.
+2023-07-02 17:58:38 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 17:58:52 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 18:00:54 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:00:54 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:00:54 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:00:56 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60905) connectado.
+2023-07-02 18:00:56 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:01:04 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 18:03:12 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:03:12 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:03:12 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:03:16 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60913) connectado.
+2023-07-02 18:03:16 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:03:23 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 18:05:25 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:05:25 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:05:25 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:05:27 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60940) connectado.
+2023-07-02 18:05:27 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:05:34 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 18:10:14 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:10:14 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:10:14 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:10:16 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 60990) connectado.
+2023-07-02 18:10:16 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:10:24 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 18:11:05 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:11:05 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:11:05 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:11:07 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61013) connectado.
+2023-07-02 18:11:07 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:11:16 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 18:18:39 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:18:39 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:18:39 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:18:42 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61055) connectado.
+2023-07-02 18:18:42 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:18:51 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 18:19:52 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:19:52 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:19:52 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:20:02 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61062) connectado.
+2023-07-02 18:20:02 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:20:08 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 18:20:52 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:20:52 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:20:52 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:20:53 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61084) connectado.
+2023-07-02 18:20:53 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:20:59 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 18:33:18 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:33:18 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:33:18 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:33:20 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61150) connectado.
+2023-07-02 18:33:20 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:33:31 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 18:37:06 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:37:06 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:37:06 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:37:08 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61165) connectado.
+2023-07-02 18:37:08 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:39:35 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:39:35 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:39:35 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:39:40 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61189) connectado.
+2023-07-02 18:39:40 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:40:01 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 18:40:01 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 18:40:01 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 18:40:07 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61196) connectado.
+2023-07-02 18:40:07 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 18:55:47 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61366) connectado.
+2023-07-02 18:55:47 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 2
+2023-07-02 18:55:56 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 19:03:45 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61407) connectado.
+2023-07-02 19:03:45 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 3
+2023-07-02 19:03:53 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 19:09:56 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 19:09:56 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 19:09:56 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 19:09:59 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61430) connectado.
+2023-07-02 19:09:59 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 19:10:18 - INFO - Proxy Server - Iniciado proceso para la opcion: REGISTRAR con datos:
+ cedula:  24464628 
+ Nombre: Victor
+2023-07-02 19:10:30 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 19:15:05 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61496) connectado.
+2023-07-02 19:15:05 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 19:15:15 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 19:17:57 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 19:17:57 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 19:17:57 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 19:18:13 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61508) connectado.
+2023-07-02 19:18:13 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 19:18:54 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 19:23:54 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 19:23:54 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 19:23:54 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 19:23:56 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61559) connectado.
+2023-07-02 19:23:56 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 19:24:07 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 19:30:36 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 19:30:36 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 19:30:36 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 19:34:45 - ERROR - Proxy Server - Error al conectarse con los servidores A y B.
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\proxy.py", line 270, in <module>
+    servidor_a.connect((host, puerto_a))
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2023-07-02 19:34:45 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 19:34:45 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 19:34:45 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 19:35:00 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 19:35:00 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 19:35:00 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 19:35:02 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61625) connectado.
+2023-07-02 19:35:02 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 19:35:28 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 20:14:43 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 20:14:43 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 20:14:43 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 20:14:56 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61863) connectado.
+2023-07-02 20:14:56 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 20:15:09 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 20:19:35 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 20:19:35 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 20:19:35 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 20:19:37 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61931) connectado.
+2023-07-02 20:19:37 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 20:19:48 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
+2023-07-02 20:20:58 - INFO - Proxy Server - [INICIANDO SERVIDOR] el servidor está iniciando....
+2023-07-02 20:20:58 - INFO - Proxy Server - El servidor esta activo en la IP: localhost
+2023-07-02 20:20:58 - INFO - Proxy Server - [Escuchando] Servidor esta escuchando...
+2023-07-02 20:21:00 - INFO - Proxy Server - [NUEVA CONNECCION] ('127.0.0.1', 61937) connectado.
+2023-07-02 20:21:00 - INFO - Proxy Server - [CONNECIONES ACTIVAS] 1
+2023-07-02 20:21:12 - INFO - Proxy Server - Iniciado Proceso para solicitar clave para FIRMA del cliente
