@@ -41,7 +41,7 @@ def crear_archivo_entrada(resultado):
     Args:
         resultado (str): Resultado a guardar en el archivo de entrada.
     """
-    with open("entrada.txt", "w") as archivo_salida:
+    with open("data/entrada.txt", "w") as archivo_salida:
         archivo_salida.write(resultado)
 
 def procesar_archivo_entrada(proxy, identidad):
@@ -52,7 +52,7 @@ def procesar_archivo_entrada(proxy, identidad):
         proxy (socket): Socket del cliente para la comunicación con el servidor proxy.
         identidad (str): Identidad del usuario.
     """
-    with open("entrada.txt", "r") as archivo_entrada:
+    with open("data/entrada.txt", "r") as archivo_entrada:
         identidad = archivo_entrada.readline().strip()
         mensaje = archivo_entrada.readline().strip()
         firma = archivo_entrada.readline().strip()
@@ -76,7 +76,7 @@ def obtener_hash_entrada():
     Returns:
         str: Hash MD5 del mensaje.
     """
-    with open("entrada.txt", "r") as archivo_entrada:
+    with open("data/entrada.txt", "r") as archivo_entrada:
         identidad = archivo_entrada.readline().strip()
         mensaje = archivo_entrada.readline().strip()
         firma = archivo_entrada.readline().strip()

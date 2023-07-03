@@ -24,7 +24,7 @@ def registrar_usuario(cedula, nombre, clave):
     Returns:
         str: Respuesta del registro.
     """
-    conn = sqlite3.connect('usuarios.db')
+    conn = sqlite3.connect('data/usuarios.db')
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM usuarios WHERE cedula = ?", (cedula,))
@@ -51,7 +51,7 @@ def solicitar_clave(identidad):
     Returns:
         str: Clave del usuario si existe, None si no existe.
     """
-    conn = sqlite3.connect('usuarios.db')
+    conn = sqlite3.connect('data/usuarios.db')
     cursor = conn.cursor()
 
     cursor.execute("SELECT clave FROM usuarios WHERE nombre = ?", (identidad,))
