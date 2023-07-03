@@ -1,11 +1,27 @@
 import socket
 
 def redirigir_consulta(proxy, servidor, consulta):
+    """
+    Redirige una consulta al servidor especificado y envía la respuesta al cliente.
+
+    Args:
+        proxy (socket): Socket del cliente.
+        servidor (socket): Socket del servidor al que se redirige la consulta.
+        consulta (str): Consulta a enviar al servidor.
+    """
     servidor.send(consulta.encode())
     respuesta = servidor.recv(1024).decode()
     proxy.send(respuesta.encode())
 
 def handle_cliente(proxy, servidor_a, servidor_b):
+    """
+    Maneja las solicitudes de un cliente en el proxy.
+
+    Args:
+        proxy (socket): Socket del cliente conectado al proxy.
+        servidor_a (socket): Socket del servidor A.
+        servidor_b (socket): Socket del servidor B.
+    """
     while True:
         data = proxy.recv(1024).decode()
         if not data:
@@ -32,7 +48,6 @@ def handle_cliente(proxy, servidor_a, servidor_b):
 
         elif comando == "AUTENTICAR_IDENTIDAD":
             # Redirigir consulta al servidor B y recibir respuesta
-            print("mm")
             redirigir_consulta(proxy, servidor_b, data)
 
         else:

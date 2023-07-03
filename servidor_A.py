@@ -4,9 +4,26 @@ import hashlib
 import sqlite3
 
 def generar_clave():
+    """
+    Genera una clave aleatoria de 8 dígitos.
+
+    Returns:
+        str: Clave generada.
+    """
     return str(random.randint(10000000, 99999999))
 
 def registrar_usuario(cedula, nombre, clave):
+    """
+    Registra un nuevo usuario en la base de datos.
+
+    Args:
+        cedula (str): Cédula del usuario.
+        nombre (str): Nombre del usuario.
+        clave (str): Clave del usuario.
+
+    Returns:
+        str: Respuesta del registro.
+    """
     conn = sqlite3.connect('usuarios.db')
     cursor = conn.cursor()
 
@@ -25,6 +42,15 @@ def registrar_usuario(cedula, nombre, clave):
     return respuesta
 
 def solicitar_clave(identidad):
+    """
+    Obtiene la clave de un usuario registrado.
+
+    Args:
+        identidad (str): Identidad del usuario (nombre).
+
+    Returns:
+        str: Clave del usuario si existe, None si no existe.
+    """
     conn = sqlite3.connect('usuarios.db')
     cursor = conn.cursor()
 
@@ -39,6 +65,12 @@ def solicitar_clave(identidad):
         return None
 
 def handle_cliente_servidor_a(cliente):
+    """
+    Maneja las solicitudes de un cliente al servidor A.
+
+    Args:
+        cliente (socket): Socket del cliente conectado.
+    """
     while True:
         data = cliente.recv(1024).decode()
         if not data:

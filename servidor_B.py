@@ -2,6 +2,15 @@ import socket
 import sqlite3
 
 def autenticar_identidad(clave):
+    """
+    Verifica la identidad de un usuario.
+
+    Args:
+        clave (str): Clave del usuario.
+
+    Returns:
+        str: Respuesta de la autenticación.
+    """
     # Conexión a la base de datos
     conn = sqlite3.connect('usuarios.db')
     cursor = conn.cursor()
@@ -23,6 +32,12 @@ def autenticar_identidad(clave):
     return respuesta
 
 def handle_cliente_servidor_b(cliente):
+    """
+    Maneja las solicitudes de un cliente al servidor B.
+
+    Args:
+        cliente (socket): Socket del cliente conectado.
+    """
     while True:
         data = cliente.recv(1024).decode()
         if not data:
@@ -30,7 +45,6 @@ def handle_cliente_servidor_b(cliente):
 
         opcion, clave = data.split()
         if opcion == "AUTENTICAR_IDENTIDAD":
-            print("aaa")
             respuesta = autenticar_identidad(clave)
             cliente.send(respuesta.encode())
 
