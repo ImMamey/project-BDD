@@ -98,6 +98,8 @@ def guardar_resultado(resultado):
 
 def crear_archivo_entrada(resultado):
     with open("entrada.txt", "w") as archivo_salida:
+        #TODO: Borrar
+        print("creando archivo con: ",resultado)
         archivo_salida.write(resultado)
 
 def procesar_archivo_entrada(identidad2):
@@ -110,18 +112,19 @@ def procesar_archivo_entrada(identidad2):
             cl.send(str(msg))
 
             #n = cl.client
-            cl.client.listen()
-            conn, addr = cl.client.accept()
+
             connected: bool = True
             while connected:
-                msg_length = conn.recv(cl.HEADER).decode(cl.FORMAT)
+                msg_length = cl.client.recv(cl.HEADER).decode(cl.FORMAT)
                 if msg_length:
                     msg_length = int(msg_length)
-                    clave = conn.recv(msg_length).decode(cl.FORMAT)
+                    clave = cl.client.recv(msg_length).decode(cl.FORMAT)
                     connected = False
+                    #cl.client.send("Clave recibida.")
+                    print("La loopclave es: ", str(clave))
 
-
-            #clave = solicitar_clave(servidor_a, identidad2)
+            #TODO: borrar esto
+            print("La clave es: ", str(clave))
 
             if clave:
                 hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
@@ -147,10 +150,6 @@ def opcion_firmar_mensaje() -> None:
     crear_archivo_entrada(resultado)
     procesar_archivo_entrada(identidad)
 
-    #msg = "[FIRMAR] " + str(identidad) + " |!| " + str(mensaje)
-    #print(msg)
-
-    #cl.send(str(msg))
 
 
 def opcion_autenticar_identidad() -> None:

@@ -164,6 +164,7 @@ class Server:
                 LOG.info(
                     "Iniciado Proceso para solicitar clave para FIRMA del cliente"
                 )
+                print("La respuesta es %s" % (respuesta))
                 return respuesta
             except:
                 LOG.exception(

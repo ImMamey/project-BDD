@@ -187,3 +187,64 @@ Traceback (most recent call last):
   File "D:\GitHub\project-BDD\client.py", line 117, in procesar_archivo_entrada
     msg_length = cl.ADDR[0].recv(cl.HEADER).decode(cl.FORMAT)
 AttributeError: 'str' object has no attribute 'recv'
+2023-07-02 18:33:20 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:33:20 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:33:31 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:33:31 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 113, in procesar_archivo_entrada
+    conn, addr = cl.client.accept()
+  File "C:\Python310\lib\socket.py", line 293, in accept
+    fd, addr = self._accept()
+OSError: [WinError 10022] An invalid argument was supplied
+2023-07-02 18:36:43 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:36:43 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:36:45 - ERROR - Cliente - Error al tratarse de conectar al Proxy. Por favor, cerrar el cliente y verificar la coneccion.
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 45, in start
+    self.client.connect(self.ADDR)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+2023-07-02 18:37:08 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:37:08 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:39:40 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:39:40 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:40:07 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:40:07 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:55:47 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 18:55:47 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 18:55:56 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 18:55:56 - ERROR - Cliente - Error al cifrar
+Traceback (most recent call last):
+  File "D:\GitHub\project-BDD\client.py", line 116, in procesar_archivo_entrada
+    conn, addr = cl.client.accept()
+  File "C:\Python310\lib\socket.py", line 293, in accept
+    fd, addr = self._accept()
+OSError: [WinError 10022] An invalid argument was supplied
+2023-07-02 19:03:45 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:03:45 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:03:53 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 19:09:59 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:09:59 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:10:18 - INFO - Cliente - Cliente ('localhost', 5555) solicitado Registrar un cliente.
+2023-07-02 19:10:30 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 19:15:05 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:15:05 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:15:15 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 19:18:13 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:18:13 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:18:54 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 19:23:56 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:23:56 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:24:07 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 19:35:02 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 19:35:02 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 19:35:28 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 20:14:56 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 20:14:56 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 20:15:09 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 20:19:37 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 20:19:37 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 20:19:48 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.
+2023-07-02 20:21:00 - INFO - Cliente - [INICIANDO Cliente] el cliente está iniciando....
+2023-07-02 20:21:00 - INFO - Cliente - [NUEVO CLIENTE] ('localhost', 5555) conectado.
+2023-07-02 20:21:12 - INFO - Cliente - Cliente ('localhost', 5555) solicitado firmar un mensaje.

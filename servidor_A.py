@@ -3,35 +3,40 @@ import random
 import hashlib
 import sqlite3
 
-
 def generar_clave():
     return str(random.randint(10000000, 99999999))
 
-
 def registrar_usuario(cedula, nombre, clave):
-    conn = sqlite3.connect("usuarios.db")
+    conn = sqlite3.connect('usuarios.db')
     cursor = conn.cursor()
 
-    # Verificar si el usuario ya está registrado
     cursor.execute("SELECT * FROM usuarios WHERE cedula = ?", (cedula,))
     resultado = cursor.fetchone()
 
     if resultado:
-        # Usuario ya registrado
         clave_registrada = resultado[1]
         respuesta = f"Ya estás registrado. Tu clave es: {clave_registrada}"
     else:
-        # Usuario nuevo
-        cursor.execute(
-            "INSERT INTO usuarios (cedula, clave, nombre) VALUES (?, ?, ?)",
-            (cedula, clave, nombre),
-        )
+        cursor.execute("INSERT INTO usuarios (cedula, clave, nombre) VALUES (?, ?, ?)", (cedula, clave, nombre))
         conn.commit()
         respuesta = f"Usuario registrado. Tu clave es: {clave}"
 
     conn.close()
     return respuesta
 
+def solicitar_clave(identidad):
+    conn = sqlite3.connect('usuarios.db')
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT clave FROM usuarios WHERE nombre = ?", (identidad,))
+    resultado = cursor.fetchone()
+
+    conn.close()
+
+    if resultado:
+        return resultado[0]
+    else:
+        return None
 
 def handle_cliente_servidor_a(cliente):
     while True:
@@ -39,7 +44,6 @@ def handle_cliente_servidor_a(cliente):
         if not data:
             break
 
-        # Procesar solicitud del cliente
         comando, *parametros = data.split()
 
         if comando == "REGISTRAR_USUARIO":
@@ -48,15 +52,18 @@ def handle_cliente_servidor_a(cliente):
             respuesta = registrar_usuario(cedula, nombre, clave)
             cliente.send(respuesta.encode())
 
-        elif comando == "FIRMAR_MENSAJE":
-            identidad, mensaje = parametros
-            # Lógica para firmar el mensaje con la identidad y el mensaje
+        elif comando == "SOLICITAR_CLAVE":
+            identidad = parametros[0]
+            clave = solicitar_clave(identidad)
+            if clave:
+                cliente.send(clave.encode())
+            else:
+                cliente.send(b"Clave no encontrada\n")
 
         else:
             cliente.send(b"Comando no reconocido\n")
 
     cliente.close()
-
 
 def iniciar_servidor_a():
     host = "localhost"
@@ -73,5 +80,5 @@ def iniciar_servidor_a():
         print("Cliente conectado desde:", direccion)
         handle_cliente_servidor_a(cliente)
 
-
-iniciar_servidor_a()
+if __name__ == "__main__":
+    iniciar_servidor_a()
