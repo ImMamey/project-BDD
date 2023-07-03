@@ -1,21 +1,45 @@
-FROM python:3.10
+###################
+# BUILD FOR LOCAL DEVELOPMENT
+###################
 
-WORKDIR . /
-RUN apt-get update && apt-get install -y python3
-RUN pip install pycryptodome==3.18.0
+FROM node:18-alpine As development
 
-COPY . /
-COPY entrada.txt /usr/app/src/entrada.txt
-COPY salida.txt /usr/app/src/salida.txt
-COPY usuarios.db /usr/app/src/usuarios.db
-RUN ls -l
-RUN pwd
+# Create app directory
+WORKDIR /usr/src/app
 
-# Puertos en los que se ejecuta la aplicación
-EXPOSE 5000
-EXPOSE 5001
+# Copy application dependency manifests to the container image.
+COPY package*.json ./
 
-CMD ["python", "-m", "servidor_a"]
-CMD ["python", "-m", "servidor_b"]
-CMD ["python", "-m", "proxy"]
-CMD ["python", "-m", "cliente"]
+# Install app dependencies
+RUN npm install --only=development
+
+# Bundle app source
+COPY . .
+
+###################
+# BUILD FOR PRODUCTION
+###################
+
+RUN npm run build
+
+###################
+# PRODUCTION
+###################
+
+FROM node:18-alpine as production
+
+# Set NODE_ENV environment variable
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+COPY --from=development /usr/src/app/dist ./dist
+
+CMD ["node", "dist/main"]

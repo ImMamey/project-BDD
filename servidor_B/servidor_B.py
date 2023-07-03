@@ -12,7 +12,7 @@ def autenticar_identidad(clave):
         str: Respuesta de la autenticación.
     """
     # Conexión a la base de datos
-    conn = sqlite3.connect('usuarios.db')
+    conn = sqlite3.connect('../usuarios.db')
     cursor = conn.cursor()
 
     # Ejecutar consulta SQL para verificar la identidad del usuario
