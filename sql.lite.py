@@ -8,7 +8,7 @@ def convertir_md5(cadena):
     return md5_hash.hexdigest()
 
 # Conexión a la base de datos
-conn = sqlite3.connect('usuarios.db')
+conn = sqlite3.connect('servidores/usuarios.db')
 cursor = conn.cursor()
 
 # Crear la tabla de usuarios
