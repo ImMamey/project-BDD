@@ -57,7 +57,7 @@ def handle_cliente(proxy, servidor_a, servidor_b):
     proxy.close()
 
 def proxy():
-    host = "0.0.0.0"
+    host = os.environ.get("HOST_SERVIDORES","127.0.0.1")
     puerto_proxy = 6000
     puerto_servidor_a = 5000
     puerto_servidor_b = 5001
@@ -69,7 +69,7 @@ def proxy():
     servidor_b.connect((host, puerto_servidor_b))
 
     proxy = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    proxy.bind((host, puerto_proxy))
+    proxy.bind(("0.0.0.0", puerto_proxy))
     proxy.listen(1)
 
     print("Proxy iniciado en {}:{}".format(host, puerto_proxy))
