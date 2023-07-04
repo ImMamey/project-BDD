@@ -1,3 +1,4 @@
+import os
 import socket
 import sqlite3
 #TODO: si se desea correr local, hay que borrar la direccion local del volumen
@@ -51,7 +52,7 @@ def handle_cliente_servidor_b(cliente):
     cliente.close()
 
 def iniciar_servidor_b():
-    host = "localhost"
+    host = "127.0.0.1"
     puerto_b = 5001
 
     servidor_b = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
