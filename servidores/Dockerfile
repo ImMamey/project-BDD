@@ -5,6 +5,7 @@ VOLUME /data
 
 
 COPY script.sh /usr/app/src/entrypoint.sh
+RUN chmod +x entrypoint.sh
 COPY servidor_A.py .
 COPY servidor_B.py .
 COPY usuarios.db /data/usuarios.db
