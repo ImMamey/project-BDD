@@ -19,5 +19,6 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS usuarios
                    clave TEXT,
                    nombre TEXT)''')
 
+
 conn.commit()
 conn.close()
