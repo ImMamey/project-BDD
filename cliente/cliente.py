@@ -238,9 +238,13 @@ def cliente():
 
 if __name__ == "__main__":
     if os.environ.get("APP_IN_DOCKER") is not None:
-        entrada_path="/data/entrada.txt"
-        salida_path="/data/salida.txt"
+        entrada_path="/datos/entrada.txt"
+        salida_path="/datos/salida.txt"
     else:
         entrada_path="entrada.txt"
         salida_path="salida.txt"
+
+    open(entrada_path, "w")
+    open(salida_path, "w")
+
     cliente()
