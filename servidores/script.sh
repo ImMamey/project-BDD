@@ -1,4 +1,4 @@
 #!/bin/bash
 
-python /servidor_A.py &
-python /servidor_B.py
+python /usr/app/src/servidor_A.py &
+python /usr/app/src/servidor_B.py
