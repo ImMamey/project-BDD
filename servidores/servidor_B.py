@@ -13,7 +13,7 @@ def autenticar_identidad(clave):
         str: Respuesta de la autenticación.
     """
     # Conexión a la base de datos
-    conn = sqlite3.connect('data/usuarios.db')
+    conn = sqlite3.connect(sqlite_path)
     cursor = conn.cursor()
 
     # Ejecutar consulta SQL para verificar la identidad del usuario
@@ -67,4 +67,8 @@ def iniciar_servidor_b():
         handle_cliente_servidor_b(conn)
 
 if __name__ == "__main__":
+    if os.environ.get("APP_IN_DOCKER") is not None:
+        sqlite_path="/data/usuarios.db"
+    else:
+        sqlite_path="usuarios.db"
     iniciar_servidor_b()

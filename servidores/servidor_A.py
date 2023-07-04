@@ -25,7 +25,7 @@ def registrar_usuario(cedula, nombre, clave):
     Returns:
         str: Respuesta del registro.
     """
-    conn = sqlite3.connect('data/usuarios.db')
+    conn = sqlite3.connect(sqlite_path)
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM usuarios WHERE cedula = ?", (cedula,))
@@ -52,7 +52,7 @@ def solicitar_clave(identidad):
     Returns:
         str: Clave del usuario si existe, None si no existe.
     """
-    conn = sqlite3.connect('data/usuarios.db')
+    conn = sqlite3.connect(sqlite_path)
     cursor = conn.cursor()
 
     cursor.execute("SELECT clave FROM usuarios WHERE nombre = ?", (identidad,))
@@ -113,4 +113,9 @@ def iniciar_servidor_a():
         handle_cliente_servidor_a(cliente)
 
 if __name__ == "__main__":
+    if os.environ.get("APP_IN_DOCKER") is not None:
+        sqlite_path="/data/usuarios.db"
+    else:
+        sqlite_path="usuarios.db"
+
     iniciar_servidor_a()

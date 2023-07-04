@@ -8,7 +8,9 @@ COPY script.sh /usr/app/src/entrypoint.sh
 RUN chmod +x entrypoint.sh
 COPY servidor_A.py .
 COPY servidor_B.py .
+COPY sql.lite.py .
 COPY usuarios.db /data/usuarios.db
+ENV APP_IN_DOCKER = True
 
 RUN pip install pycryptodome==3.18.0
 EXPOSE 5000/tcp
