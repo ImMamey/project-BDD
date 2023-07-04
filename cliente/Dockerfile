@@ -12,8 +12,6 @@ RUN pip install pycryptodome==3.18.0
 
 ENV SERVIDORES=contenedor_servidores
 ENV PROXY=contenedor_proxy
-ENV CLIENTE_PUERTO=6000
-EXPOSE 6000/tcp
 
 
 CMD ["python", "/cliente.py"]

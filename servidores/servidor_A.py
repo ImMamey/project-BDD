@@ -2,7 +2,7 @@ import socket
 import random
 import hashlib
 import sqlite3
-
+#TODO: si se desea correr local, hay que borrar la direccion local del volumen
 def generar_clave():
     """
     Genera una clave aleatoria de 8 dígitos.

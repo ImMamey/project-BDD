@@ -1,6 +1,6 @@
 import socket
 import sqlite3
-
+#TODO: si se desea correr local, hay que borrar la direccion local del volumen
 def autenticar_identidad(clave):
     """
     Verifica la identidad de un usuario.
