@@ -42,7 +42,7 @@ def crear_archivo_entrada(resultado):
     Args:
         resultado (str): Resultado a guardar en el archivo de entrada.
     """
-    with open("data/entrada.txt", "w") as archivo_salida:
+    with open(entrada_path, "w") as archivo_salida:
         archivo_salida.write(resultado)
 
 def procesar_archivo_entrada(proxy, identidad):
@@ -53,7 +53,7 @@ def procesar_archivo_entrada(proxy, identidad):
         proxy (socket): Socket del cliente para la comunicación con el servidor proxy.
         identidad (str): Identidad del usuario.
     """
-    with open("data/entrada.txt", "r") as archivo_entrada:
+    with open(entrada_path, "r") as archivo_entrada:
         identidad = archivo_entrada.readline().strip()
         mensaje = archivo_entrada.readline().strip()
         firma = archivo_entrada.readline().strip()
@@ -77,7 +77,7 @@ def obtener_hash_entrada():
     Returns:
         str: Hash MD5 del mensaje.
     """
-    with open("data/entrada.txt", "r") as archivo_entrada:
+    with open(entrada_path, "r") as archivo_entrada:
         identidad = archivo_entrada.readline().strip()
         mensaje = archivo_entrada.readline().strip()
         firma = archivo_entrada.readline().strip()
@@ -88,7 +88,7 @@ def descifrar_mensaje():
     """
     Descifra el mensaje guardado en el archivo de salida y verifica su integridad.
     """
-    with open("salida.txt", "r") as archivo_salida:
+    with open(salida_path, "r") as archivo_salida:
         clave = archivo_salida.readline().strip()
         firma = archivo_salida.readline().strip()
         mensaje = archivo_salida.readline().strip()
@@ -133,7 +133,7 @@ def guardar_resultado(resultado):
     Args:
         resultado (str): Resultado a guardar en el archivo de salida.
     """
-    with open("salida.txt", "w") as archivo_salida:
+    with open(salida_path, "w") as archivo_salida:
         archivo_salida.write(resultado)
 
 def cifrar_hash(hash_md5, clave):
@@ -237,4 +237,10 @@ def cliente():
     proxy.close()
 
 if __name__ == "__main__":
+    if os.environ.get("APP_IN_DOCKER") is not None:
+        entrada_path="/data/entrada.txt"
+        salida_path="/data/salida.txt"
+    else:
+        entrada_path="entrada.txt"
+        salida_path="salida.txt"
     cliente()
