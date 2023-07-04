@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  servidores:
+    container_name: contenedor_servidores
+    build: servidores
+    volumes:
+      - db:/data
+  proxy:
+    container_name: contenedor_proxy
+    build: proxy
+    ports:
+      - "127.0.0.1:6000:6000"
+
+volumes:
+  db:
