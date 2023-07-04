@@ -39,13 +39,7 @@ def handle_cliente(proxy, servidor_a, servidor_b):
             servidor_a.send(data.encode())
             respuesta_a = servidor_a.recv(1024).decode()
 
-            if respuesta_a.startswith("Clave no encontrada"):
-                # Redirigir consulta al servidor B y recibir respuesta
-                servidor_b.send(data.encode())
-                respuesta_b = servidor_b.recv(1024).decode()
-                proxy.send(respuesta_b.encode())
-            else:
-                proxy.send(respuesta_a.encode())
+            proxy.send(respuesta_a.encode())
 
         elif comando == "AUTENTICAR_IDENTIDAD":
             # Redirigir consulta al servidor B y recibir respuesta

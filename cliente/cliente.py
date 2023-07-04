@@ -59,7 +59,7 @@ def procesar_archivo_entrada(proxy, identidad):
         firma = archivo_entrada.readline().strip()
         try:
             clave = solicitar_clave(proxy, identidad)
-            if clave != "Clave no encontrada\n":
+            if clave != ("Clave no encontrada\n"):
                 hash_md5 = hashlib.md5(mensaje.encode()).hexdigest()
                 firma = cifrar_hash(hash_md5, clave)
                 resultado = f"{clave}\n{firma}\n{mensaje}\n0"

@@ -88,6 +88,7 @@ def handle_cliente_servidor_a(cliente):
         elif comando == "SOLICITAR_CLAVE":
             identidad = parametros[0]
             clave = solicitar_clave(identidad)
+
             if clave:
                 cliente.send(clave.encode())
             else:
