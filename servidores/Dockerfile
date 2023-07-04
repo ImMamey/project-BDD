@@ -7,11 +7,9 @@ VOLUME /data
 COPY script.sh /usr/app/src/entrypoint.sh
 COPY servidor_A.py .
 COPY servidor_B.py .
-COPY usuarios.db /data
+COPY usarios.db /data/usarios.db
 
 RUN pip install pycryptodome==3.18.0
-ENV PUERTO_A=5000
-ENV PUERTO_B=5001
 EXPOSE 5000/tcp
 EXPOSE 5001/tcp
 

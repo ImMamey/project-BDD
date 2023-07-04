@@ -1,3 +1,4 @@
+import os
 import socket
 
 def redirigir_consulta(proxy, servidor, consulta):
@@ -56,7 +57,7 @@ def handle_cliente(proxy, servidor_a, servidor_b):
     proxy.close()
 
 def proxy():
-    host = "localhost"
+    host = os.environ.get("HOST_SERVIDORES","127.0.0.1")
     puerto_proxy = 6000
     puerto_servidor_a = 5000
     puerto_servidor_b = 5001

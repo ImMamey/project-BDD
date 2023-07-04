@@ -1,3 +1,4 @@
+import os
 import socket
 import hashlib
 import base64
@@ -210,7 +211,7 @@ def cliente():
     """
     Función principal del cliente que establece la conexión con el servidor proxy y maneja las opciones del menú.
     """
-    host = "localhost"
+    host = os.environ.get("HOST_PROXY", "127.0.0.1")
     puerto_proxy = 6000
 
     proxy = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
