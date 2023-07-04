@@ -17,7 +17,7 @@
 ---
 ## Description
 
-This is an university project for a Client-Server architecture, using TCP sockets, threading, docker containers and docker networking.
+This is an university project for a Client-Server architecture, using TCP sockets, threading, md5-hash encryption, docker containers and docker networking.
 * There are 2 servers, that can access a database.
 * There are clients that can request to sign up, register, identity verification, and encryption of  messages to these servers.
 * All the connections happen through a "proxy" server, that handle all clients connections to the 2 servers.
