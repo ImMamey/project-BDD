@@ -52,7 +52,7 @@ def handle_cliente_servidor_b(cliente):
     cliente.close()
 
 def iniciar_servidor_b():
-    host = "127.0.0.1"
+    host = "0.0.0.0"
     puerto_b = 5001
 
     servidor_b = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

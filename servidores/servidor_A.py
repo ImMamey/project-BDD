@@ -98,7 +98,7 @@ def handle_cliente_servidor_a(cliente):
     cliente.close()
 
 def iniciar_servidor_a():
-    host = "127.0.0.1"
+    host = "0.0.0.0"
     port = 5000
 
     servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
