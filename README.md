@@ -68,6 +68,12 @@ Step 3: Create the containers with the images and the network
 
 With all the previous steps completed you can should be able to interact with the container with the client.
 
+Extra commands:
+1. `sudo docker exec -it <guid> bash` Runs existing container.
+2. `poetry shell` runs the shell of the venv
+3. `docker logs container_name` opens de the log
+4. `docker start [OPTIONS] CONTAINER [CONTAINER...]` Start on or more stopped container
+
 ---
 ## License
 Read the [`LICENSE`](docs/LICENSE) for more info,
